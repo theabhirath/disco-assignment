@@ -37,6 +37,10 @@ bool isTransitive(int n, int a[n][n]){
     return true;
 }
 
+bool isEquivalence(int n, int a[n][n]){
+    return isReflexive(n,a) && isSymmetric(n,a) && isTransitive(n,a);
+}
+
 int main(void){
     int a [3][3]= {{1,0,1},{0,1,0},{1,0,1}};
     printf("Reflexive: %s\n", isReflexive(3,a) ? "true" : "false");
