@@ -37,14 +37,29 @@ bool isTransitive(int n, int a[n][n]){
     return true;
 }
 
+bool isAntisymmetric(int n, int a[n][n]){
+    for(int i = 0; i<n; i++){
+        for(int j = 0; j<n; j++){
+            if(a[i][j] && a[j][i]){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 bool isEquivalence(int n, int a[n][n]){
     return isReflexive(n,a) && isSymmetric(n,a) && isTransitive(n,a);
 }
 
-int main(void){
-    int a [3][3]= {{1,0,1},{0,1,0},{1,0,1}};
-    printf("Reflexive: %s\n", isReflexive(3,a) ? "true" : "false");
-    printf("Symmetric: %s\n", isSymmetric(3,a) ? "true": "false");
-    printf("Transitive: %s\n", isTransitive(3,a) ? "true" : "false" );
-    return 0;
+bool isPartialOrdering(int n, int a[n][n]){
+    return isReflexive(n,a) && isAntisymmetric(n,a) && isTransitive(n,a);
 }
+
+// int main(void){
+//     int a [3][3]= {{1,0,1},{0,1,0},{1,0,1}};
+//     printf("Reflexive: %s\n", isReflexive(3,a) ? "true" : "false");
+//     printf("Symmetric: %s\n", isSymmetric(3,a) ? "true": "false");
+//     printf("Transitive: %s\n", isTransitive(3,a) ? "true" : "false" );
+//     return 0;
+// }
