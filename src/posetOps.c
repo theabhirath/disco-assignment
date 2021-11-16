@@ -68,12 +68,11 @@ int minimal(int n, int a[n][n], int b[n]){
     return m;
 }
 
-int * displayreachable(int *c, int ln, int *d, int n){
+int displayreachable(int c[ln], int ln, int d[n][n], int n, int b[n]){
 	int a[n][n];
 	memcpy(a, d, sizeof(int[n][n]));
 	int arr[ln];
 	memcpy(arr, c, sizeof(int[ln]));
-	int b[];
 	int dc = 0;
 	for (int i=0; i<n; i++){
 		for(int j=0; j<ln; j++){
@@ -86,15 +85,14 @@ int * displayreachable(int *c, int ln, int *d, int n){
 			}
 		}
 	}
-	return &b[0];
+	return dc;
 }
 
-int * reachablefrom(int *c, int ln, int *d, int n){
+int reachablefrom(int c[ln], int ln, int d[n][n], int n, int b[n]){
 	int a[n][n];
 	memcpy(a, d, sizeof(int[n][n]));
 	int arr[ln];
 	memcpy(arr, c, sizeof(int[ln]));
-	int b[];
 	int dc = 0;
 	for (int i=0; i<n; i++){
 		for(int j=0; j<ln; j++){
@@ -107,5 +105,5 @@ int * reachablefrom(int *c, int ln, int *d, int n){
 			}
 		}
 	}
-	return &b[0];
+	return dc;
 }			
