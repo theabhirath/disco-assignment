@@ -67,3 +67,45 @@ int minimal(int n, int a[n][n], int b[n]){
     }
     return m;
 }
+
+int * displayreachable(int *c, int ln, int *d, int n){
+	int a[n][n];
+	memcpy(a, d, sizeof(int[n][n]));
+	int arr[ln];
+	memcpy(arr, c, sizeof(int[ln]));
+	int b[];
+	int dc = 0;
+	for (int i=0; i<n; i++){
+		for(int j=0; j<ln; j++){
+			if(a[arr[j],i]==0){
+				break;
+			}
+			if(j==ln-1){
+				b[dc]=i;
+				dc++;
+			}
+		}
+	}
+	return &b[0];
+}
+
+int * reachablefrom(int *c, int ln, int *d, int n){
+	int a[n][n];
+	memcpy(a, d, sizeof(int[n][n]));
+	int arr[ln];
+	memcpy(arr, c, sizeof(int[ln]));
+	int b[];
+	int dc = 0;
+	for (int i=0; i<n; i++){
+		for(int j=0; j<ln; j++){
+			if(a[i,arr[j]]==0){
+				break;
+			}
+			if(j==ln-1){
+				b[dc]=i;
+				dc++;	
+			}
+		}
+	}
+	return &b[0];
+}			
