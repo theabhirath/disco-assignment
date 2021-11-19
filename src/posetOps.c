@@ -108,33 +108,25 @@ int reachablefrom(int c[ln], int ln, int d[n][n], int n, int b[n]){
 	return dc;
 }			
 
-int complement(int a, int b[n][n], int n, int comp[n]){
-    /*Returns the number of complements and the complements are stored in an array*/
-    int x=0;
-    int c[n][n];
-    memcpy(c, b, sizeof(int[n][n]));
-    int arr[n];
-    memcpy(arr, comp, sizeof(int[n]));
-    int maxl[n];
-    int minl[n];
-    int maxnum = maximal(n, b[n][n], maxl[n]);
-    int minum = minimal(n, b[n][n], maxl[n])
-    for (int i=0; i<n; i++){
-        if(join(a, i, n, b[n][n])==maxl[0]  && meet(a, i, n, b[n][n])==minl[0] ){
-            comp[x]=i;
-            x++;
+int checkLattice(int n, int a[n][n]){
+/*Lattice has only one minimal and one maximal. Use functions for part 4 and part 5 of Menu 4. Any pair of elements has just one join and one meet*/	
+    int b[n];
+    if(maximal(n, a[n][n], b[n])>1){
+        return 0;
+    }
+    if(minimal(n, a[n][n], b[n])>1){
+        return 0;
+    }
+    int inp[2];
+    /*displayreachable and reachablefrom can't be zero for any pair*/
+    for(int i=0; i<n; i++){
+        for(int j=0;j<n;j++){
+            inp[0]=i;
+            inp[1]=j;
+            if(displayreachable(inp, 2, a, n, b)==0 || reachablefrom(inp, 2, a, n, b)==0){
+                return 0;
+            }
         }
     }
-    return x;
-}
-
-int isDistributive(int n, int b[n][n]){
-    /*Check if all elements have only one complement, if yes, distributive*/
-    int ifdist = 0;
-    for (int i=0; i<n; i++){
-        for (int j=0; j<n; j++){
-            /*Check for complements*/
-        }
-    }
-
+    return 1;
 }
