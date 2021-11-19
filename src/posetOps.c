@@ -39,7 +39,7 @@ int lowerBound(int n, int a[n][n], int b[n]){
     return m;
 }
 
-int maximal(int n, int a[n][n]m int b[n]){
+int maximal(int n, int a[n][n], int b[n]){
     int m = 0;
     for (int i = 0; i < n; i++)
     {
@@ -107,3 +107,34 @@ int reachablefrom(int c[ln], int ln, int d[n][n], int n, int b[n]){
 	}
 	return dc;
 }			
+
+int complement(int a, int b[n][n], int n, int comp[n]){
+    /*Returns the number of complements and the complements are stored in an array*/
+    int x=0;
+    int c[n][n];
+    memcpy(c, b, sizeof(int[n][n]));
+    int arr[n];
+    memcpy(arr, comp, sizeof(int[n]));
+    int maxl[n];
+    int minl[n];
+    int maxnum = maximal(n, b[n][n], maxl[n]);
+    int minum = minimal(n, b[n][n], maxl[n])
+    for (int i=0; i<n; i++){
+        if(join(a, i, n, b[n][n])==maxl[0]  && meet(a, i, n, b[n][n])==minl[0] ){
+            comp[x]=i;
+            x++;
+        }
+    }
+    return x;
+}
+
+int isDistributive(int n, int b[n][n]){
+    /*Check if all elements have only one complement, if yes, distributive*/
+    int ifdist = 0;
+    for (int i=0; i<n; i++){
+        for (int j=0; j<n; j++){
+            /*Check for complements*/
+        }
+    }
+
+}
