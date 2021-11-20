@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include <stdio.h>
+
 bool isReflexive(int n, int a[n][n]){
     for(int i = 0; i<n; i++){
         if(!a[i][i])

@@ -1,6 +1,8 @@
 #include <stdbool.h>
 #include <stdio.h>
+
 #include "matrixType.c"
+
 int partition(int n, int a[n][n]){
     int count = 0;
     int b[n][n];

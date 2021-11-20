@@ -1,4 +1,5 @@
 #include <stdbool.h>
+
 int upperBound(int n, int a[n][n], int b[n]){
     int m = 0;
     for(int i = 0; i<n; i++){
@@ -68,7 +69,7 @@ int minimal(int n, int a[n][n], int b[n]){
     return m;
 }
 
-int displayreachable(int c[ln], int ln, int d[n][n], int n, int b[n]){
+int displayreachable(int ln, int n, int c[ln], int d[n][n], int b[n]){
     /*6*/
 	int a[n][n];
 	memcpy(a, d, sizeof(int[n][n]));
@@ -89,7 +90,7 @@ int displayreachable(int c[ln], int ln, int d[n][n], int n, int b[n]){
 	return dc;
 }
 
-int reachablefrom(int c[ln], int ln, int d[n][n], int n, int b[n]){
+int reachablefrom(int ln, int n, int c[ln],  int d[n][n], int b[n]){
     /*7*/
 	int a[n][n];
 	memcpy(a, d, sizeof(int[n][n]));
@@ -111,7 +112,8 @@ int reachablefrom(int c[ln], int ln, int d[n][n], int n, int b[n]){
 }			
 
 int checkLattice(int n, int a[n][n]){
-/*Lattice has only one minimal and one maximal. Use functions for part 4 and part 5 of Menu 4. Any pair of elements has just one join and one meet*/	
+/* Lattice has only one minimal and one maximal. Use functions for part 4 and part 5 of Menu 4. 
+Any pair of elements has just one join and one meet. */	
     int b[n];
     if(maximal(n, a[n][n], b[n])>1){
         return 0;
@@ -125,7 +127,7 @@ int checkLattice(int n, int a[n][n]){
         for(int j=0;j<n;j++){
             inp[0]=i;
             inp[1]=j;
-            if(displayreachable(inp, 2, a, n, b)==0 || reachablefrom(inp, 2, a, n, b)==0){
+            if(displayreachable(2, n, inp, a, b)==0 || reachablefrom(2, n, inp, a, b)==0){
                 return 0;
             }
         }
