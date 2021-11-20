@@ -18,77 +18,73 @@ int main(void){
     char websites [MAXN][MAXCHAR];
     int n = 0;
     int count = 0;
+    //  Reading the websites to websites[i]
     if (feof(fp) != true)
     {
         fgets(row, MAXCHAR, fp);
-        // printf("Row: %s", row);
-        int len = 1;
+        n = 1;
         for(int i = 0; row[i] != EOF; i++)
         {
             if(row[i] == ',' && i!=0){
-                len++;
+                n++;
             }
         }
-        n = len;
         token = strtok(row, ",");
         int i = 0;
-        while(token != NULL)
+        while(token != NULL && i <n)
         {
-            // printf("Token: %s\n", token);
             strcpy(websites[i], token);
             token = strtok(NULL, ",");
             i++;
         }
     }
-
+    // array stores the 0-1 matrix of the given relation
     int array[n][n];
     memset(array, 0 , n*n*sizeof(int));
-    printf("n = %d\n", n);
+    // printf("n = %d\n", n);
     for (int i = 0; i < n; i++)
     {
         char * ptr = websites[i];
         strcpy(websites[i], trimwhitespace(ptr));
         printf("%s\n", websites[i]);
     }
-
+    // Reading the 0-1 matrix
     while (feof(fp) != true)
     {
         fgets(row, MAXCHAR, fp);
-        // printf("Row: %s", row);
 
         token = strtok(row, ",");
         int i;
+        // Checking which website index(i) is the current row
         for(i = 0; i<n; i++){
-            // printf("Token: %s\n", token);            
             if(strncmp(token, websites[i], 
             strlen(token) < strlen(websites[i])?strlen(token):strlen(websites[i])) == 0){
-                // printf("i = %d\n", i);
                 break;
             }
         }
         token = strtok(NULL, ",");
         int j = 0;
+        // Reading the 1's
         while(token != NULL)
         {
-            // printf("Token: %s\n", token);
             array[i][j] = (strchr(token,'1') != NULL);
             token = strtok(NULL, ",");
             j++;
         }
     }
-    printf("The matrix representing the given relation is:\n");
-
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j<n; j++){
-            printf("%d ", array[i][j]);
+    for (int i = 0; i < n; i++)
+    {
+        for(int j = 0; j < n; j++){
+            printf("%d", array[i][j]);
         }
         printf("\n");
     }
-    writeToCsv(n, websites, array, "test1.txt");
+    
 }
 
 
-//Write to csv
+//  Usage of writeToCsv:
+//  writeToCsv(n, websites, array, "test1.txt");
 void writeToCsv(int n, char websites[][MAXCHAR], int array[n][n], char * filename)
 {
     FILE *fp;
@@ -105,6 +101,7 @@ void writeToCsv(int n, char websites[][MAXCHAR], int array[n][n], char * filenam
     fprintf(fp,"\n");
 }
 
+// Credits to Adam Rosenfield for his implementation of trim in C https://stackoverflow.com/a/122721
 char *trimwhitespace(char *str)
 {
   char *end;
