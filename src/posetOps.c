@@ -69,6 +69,7 @@ int minimal(int n, int a[n][n], int b[n]){
 }
 
 int displayreachable(int c[ln], int ln, int d[n][n], int n, int b[n]){
+    /*6*/
 	int a[n][n];
 	memcpy(a, d, sizeof(int[n][n]));
 	int arr[ln];
@@ -89,6 +90,7 @@ int displayreachable(int c[ln], int ln, int d[n][n], int n, int b[n]){
 }
 
 int reachablefrom(int c[ln], int ln, int d[n][n], int n, int b[n]){
+    /*7*/
 	int a[n][n];
 	memcpy(a, d, sizeof(int[n][n]));
 	int arr[ln];

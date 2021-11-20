@@ -3,7 +3,6 @@
 #include "posetOps.c"
 
 int join(int a, int b, int d[n][n], int n){
-    /*Basically least upper bound*/
 	int arr[n][n];
 	memcpy(arr, d, sizeof(int[n][n]));
 	int inp[2] = {a,b};
@@ -15,23 +14,41 @@ int join(int a, int b, int d[n][n], int n){
     }
     else{
 	/*Select the one which can reach every other one.*/
-
+        for(int i=0; i<mp; i++){
+            for(int j=0;j<mp;j++){
+                if(d[joins[i],joins[j]]==0){
+                    break;
+                }
+                if(j=mp-1){
+                    return joins[i];
+                }
+            }
+        }
     }
 }
 
 int meet(int a, int b, int d[n][n], int n){
-    /*Basically greatest upper bound*/
 	int arr[n][n];
 	memcpy(arr, d, sizeof(int[n][n]));
 	int inp[2] = {a,b};
 	int mp;
     int meets[n];
-	mp = fromreachable(inp, 2, d, n, meets);
+	mp = reachablefrom(inp, 2, d, n, meets);
     if(mp==1){
         return meets[0];
     }
     else{
 	/*Select the one which is reachable from every other one.*/
+        for(int i=0; i<mp; i++){
+            for(int j=0;j<mp;j++){
+                if(d[joins[j],joins[i]]==0){
+                    break;
+                }
+                if(j=mp-1){
+                    return joins[i];
+                }
+            }
+        }
     }
 }
 
