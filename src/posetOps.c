@@ -68,67 +68,129 @@ int minimal(int n, int a[n][n], int b[n]){
     return m;
 }
 
-int displayreachable(int c[ln], int ln, int d[n][n], int n, int b[n]){
-    /*6*/
-	int a[n][n];
-	memcpy(a, d, sizeof(int[n][n]));
-	int arr[ln];
-	memcpy(arr, c, sizeof(int[ln]));
-	int dc = 0;
-	for (int i=0; i<n; i++){
-		for(int j=0; j<ln; j++){
-			if(a[arr[j],i]==0){
-				break;
-			}
-			if(j==ln-1){
-				b[dc]=i;
-				dc++;
-			}
-		}
-	}
-	return dc;
-}
+// int displayreachable(int c[ln], int ln, int d[n][n], int n, int b[n]){
+//     /*6*/
+// 	int a[n][n];
+// 	memcpy(a, d, sizeof(int[n][n]));
+// 	int arr[ln];
+// 	memcpy(arr, c, sizeof(int[ln]));
+// 	int dc = 0;
+// 	for (int i=0; i<n; i++){
+// 		for(int j=0; j<ln; j++){
+// 			if(a[arr[j],i]==0){
+// 				break;
+// 			}
+// 			if(j==ln-1){
+// 				b[dc]=i;
+// 				dc++;
+// 			}
+// 		}
+// 	}
+// 	return dc;
+// }
 
-int reachablefrom(int c[ln], int ln, int d[n][n], int n, int b[n]){
-    /*7*/
-	int a[n][n];
-	memcpy(a, d, sizeof(int[n][n]));
-	int arr[ln];
-	memcpy(arr, c, sizeof(int[ln]));
-	int dc = 0;
-	for (int i=0; i<n; i++){
-		for(int j=0; j<ln; j++){
-			if(a[i,arr[j]]==0){
-				break;
-			}
-			if(j==ln-1){
-				b[dc]=i;
-				dc++;	
-			}
-		}
-	}
-	return dc;
-}			
+// int reachablefrom(int c[ln], int ln, int d[n][n], int n, int b[n]){
+//     /*7*/
+// 	int a[n][n];
+// 	memcpy(a, d, sizeof(int[n][n]));
+// 	int arr[ln];
+// 	memcpy(arr, c, sizeof(int[ln]));
+// 	int dc = 0;
+// 	for (int i=0; i<n; i++){
+// 		for(int j=0; j<ln; j++){
+// 			if(a[i,arr[j]]==0){
+// 				break;
+// 			}
+// 			if(j==ln-1){
+// 				b[dc]=i;
+// 				dc++;	
+// 			}
+// 		}
+// 	}
+// 	return dc;
+// }			
 
-int checkLattice(int n, int a[n][n]){
-/*Lattice has only one minimal and one maximal. Use functions for part 4 and part 5 of Menu 4. Any pair of elements has just one join and one meet*/	
-    int b[n];
-    if(maximal(n, a[n][n], b[n])>1){
-        return 0;
-    }
-    if(minimal(n, a[n][n], b[n])>1){
-        return 0;
-    }
-    int inp[2];
-    /*displayreachable and reachablefrom can't be zero for any pair*/
-    for(int i=0; i<n; i++){
-        for(int j=0;j<n;j++){
-            inp[0]=i;
-            inp[1]=j;
-            if(displayreachable(inp, 2, a, n, b)==0 || reachablefrom(inp, 2, a, n, b)==0){
-                return 0;
-            }
+// int checkLattice(int n, int a[n][n]){
+// /*Lattice has only one minimal and one maximal. Use functions for part 4 and part 5 of Menu 4. Any pair of elements has just one join and one meet*/	
+//     int b[n];
+//     if(maximal(n, a[n][n], b[n])>1){
+//         return 0;
+//     }
+//     if(minimal(n, a[n][n], b[n])>1){
+//         return 0;
+//     }
+//     int inp[2];
+//     /*displayreachable and reachablefrom can't be zero for any pair*/
+//     for(int i=0; i<n; i++){
+//         for(int j=0;j<n;j++){
+//             inp[0]=i;
+//             inp[1]=j;
+//             if(displayreachable(inp, 2, a, n, b)==0 || reachablefrom(inp, 2, a, n, b)==0){
+//                 return 0;
+//             }
+//         }
+//     }
+//     return 1;
+// }
+
+int getHasseMatrix(int n, int a[n][n], int b[n][n]){
+    // Copying a to b and 0ing diagonal elements
+    for(int i = 0; i<n; i++){
+        for(int j = 0; j<n; j++){
+            b[i][j] = a[i][j];
         }
+        b[i][i] = 0;
     }
-    return 1;
+    bool trans = true;
+    while(trans){
+        trans = false;
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                for (int k = 0; k < n; k++){
+                    if(b[i][j] && b[j][k] && b[i][k]){
+                        b[i][k] = 0;
+                        trans = true;
+                    }
+                }
+            }
+                
+        }
+                   
+    }
 }
+//Testing working of getHasseMatrix:
+
+// int main(void){
+//     int a[5][5] = {
+//         {1, 0, 1, 1, 1},
+//         {0, 1, 1, 1, 1},
+//         {0, 0, 1, 0, 1},
+//         {0, 0, 1, 1, 1},
+//         {0, 0, 0, 0, 1}};
+//     // printf("%s\n", isPartialOrdering(5, a) ? "True" : "False");
+//     int b[5][5] = {0};
+//     getHasseMatrix(5, a , b);
+//     int n = 5;
+//     for (int i = 0; i < n; i++)
+//     {
+//         for (int j = 0; j < n; j++)
+//         {
+//             printf("%d ",a[i][j] );
+//         }
+//         printf("\n");
+//     }
+//     printf("\n");
+//     for (int i = 0; i < n; i++)
+//     {
+//         for (int j = 0; j < n; j++)
+//         {
+//             printf("%d ",b[i][j] );
+//         }
+//         printf("\n");
+//     }
+    
+//     websites[n] = {"w1", "w2", "w3", "w4", "w5"};
+
+// }
