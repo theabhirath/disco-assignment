@@ -4,3 +4,6 @@
 src/csv
 *.txt
 *copy*
+*.gch
+src/testPartailOrder.csv
+visualiser/testing.py
