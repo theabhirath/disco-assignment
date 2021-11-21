@@ -2,3 +2,10 @@
 *.exe
 *.out
 *.txt
+<<<<<<< HEAD
+=======
+*copy*
+*.gch
+src/testPartailOrder.csv
+visualiser/testing.py
+>>>>>>> d3bab9231e3cfe0f2d435e6259fd41ba7660dd5e

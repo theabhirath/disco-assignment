@@ -3,6 +3,7 @@
 
 #include "matrixType.c"
 
+#include "functions.h"
 int partition(int n, int a[n][n]){
     int count = 0;
     int b[n][n];
@@ -43,12 +44,12 @@ int partition(int n, int a[n][n]){
     return count;
 }
 
-int main(void){
-    int a[6][6] = {{1,1,1,0,0,0},{1,1,1,0,0,0},{1,1,1,0,0,0},{0,0,0,1,1,0},{0,0,0,1,1,0},{0,0,0,0,0,1}};
-    printf("Reflexive: %s\n", isReflexive(6,a) ? "true" : "false");
-    printf("Symmetric: %s\n", isSymmetric(6,a) ? "true": "false");
-    printf("Antisymmetric: %s\n", isAntisymmetric(6,a) ? "true": "false");
-    printf("Transitive: %s\n", isTransitive(6,a) ? "true" : "false" );
-    printf("Equivalence: %s\n", isEquivalence(6,a) ? "true" : "false" );
-    partition(6,a);
-}
+// int main(void){
+//     int a[6][6] = {{1,1,1,0,0,0},{1,1,1,0,0,0},{1,1,1,0,0,0},{0,0,0,1,1,0},{0,0,0,1,1,0},{0,0,0,0,0,1}};
+//     printf("Reflexive: %s\n", isReflexive(6,a) ? "true" : "false");
+//     printf("Symmetric: %s\n", isSymmetric(6,a) ? "true": "false");
+//     printf("Antisymmetric: %s\n", isAntisymmetric(6,a) ? "true": "false");
+//     printf("Transitive: %s\n", isTransitive(6,a) ? "true" : "false" );
+//     printf("Equivalence: %s\n", isEquivalence(6,a) ? "true" : "false" );
+//     partition(6,a);
+// }
