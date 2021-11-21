@@ -5,17 +5,15 @@
 #include "closureOps.c"
 
 /* calculates reflexive closure of a relation */
-bool reflexive_closure(int n, int a[n][n], int b[n][n]){
+void reflexive_closure(int n, int a[n][n], int b[n][n]){
     memcpy(b, a, sizeof(int) * n * n);
     for (int i = 0; i < n; i++){
         b[i][i] = 1;
     }
-    if (matrix_equals(n, a, b)) { return true; }
-    else { return false; }
 }
 
 /* calculate symmetric closure of a relation */
-bool symmetric_closure(int n, int a[n][n], int b[n][n]){
+void symmetric_closure(int n, int a[n][n], int b[n][n]){
     memcpy(b, a, sizeof(int) * n * n);
     for (int i = 0; i < n; i++){
         for (int j = 0; j < n; j++){
@@ -24,12 +22,10 @@ bool symmetric_closure(int n, int a[n][n], int b[n][n]){
             }
         }
     }
-    if (matrix_equals(n, a, b)) { return true; }
-    else { return false; }
 }
 
 /* calculate transitive closure of a relation */
-bool transitive_closure(int n, int a[n][n], int b[n][n]){
+void transitive_closure(int n, int a[n][n], int b[n][n]){
     memcpy(b, a, sizeof(int) * n * n);
     for (int k = 0; k < n; k++){
         for (int i = 0; i < n; i++){
@@ -38,6 +34,4 @@ bool transitive_closure(int n, int a[n][n], int b[n][n]){
             }
         }
     }
-    if (matrix_equals(n, a, b)) { return true; }
-    else { return false; }
 }

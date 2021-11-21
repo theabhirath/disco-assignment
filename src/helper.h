@@ -15,8 +15,10 @@ bool symmetric_closure(int n, int a[n][n], int b[n][n]);
 bool transitive_closure(int n, int a[n][n], int b[n][n]);
 
 /* csv.c */
-char *trimwhitespace(char *str);
-void writeToCsv(int n, char websites[][MAXCHAR], int array[n][n], char * filename);
+void writeToCsv(int n, char websites[][MAXCHAR], int array[n][n], char * fileName);
+int **readFromCsv(FILE *filePointer, int *n, char websites[MAXN][MAXCHAR]);
+char *trimwhitespace(char *s);
+void freeArray(int **array, int n);
 
 /* matrixType.c */
 bool isReflexive(int n, int a[n][n]);
