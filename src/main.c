@@ -3,10 +3,12 @@
 #include <stdlib.h>
 
 #include "visualiser/visualiser.h"
-#include "src/helper.h"
+#include "../include/helper.h"
 
 #define MAXCHAR 1000
 #define MAXN 50
+
+int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *outputFile);
 
 int main(void){
     printf("Welcome to our DisCo project!\n");

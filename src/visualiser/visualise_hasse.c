@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include <stdlib.h>
 
 void plot_hasse(char *fname){
     int pid;

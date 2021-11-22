@@ -6,9 +6,6 @@
 #define MAXCHAR 1000
 #define MAXN 50
 
-/* closureOps.c */
-bool matrix_equals(int n, int a[n][n], int b[n][n]);
-
 /* closures.c */
 bool symmetric_closure(int n, int a[n][n], int b[n][n]);
 bool transitive_closure(int n, int a[n][n], int b[n][n]);

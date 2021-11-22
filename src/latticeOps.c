@@ -1,6 +1,7 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <string.h>
 
-#include "posetOps.c"
+#include "../include/helper.h"
 
 int join(int a, int b, int n, int d[n][n]){
 	int arr[n][n];
@@ -19,7 +20,7 @@ int join(int a, int b, int n, int d[n][n]){
                 if(d[joins[i],joins[j]]==0){
                     break;
                 }
-                if(j=mp-1){
+                if(j==mp-1){
                     return joins[i];
                 }
             }
@@ -44,7 +45,7 @@ int meet(int a, int b, int n, int d[n][n]){
                 if(d[meets[j],meets[i]]==0){
                     break;
                 }
-                if(j=mp-1){
+                if(j==mp-1){
                     return meets[i];
                 }
             }
