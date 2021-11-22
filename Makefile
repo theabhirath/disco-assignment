@@ -1,31 +1,31 @@
-# MAKEFILE
+MKDIR   := mkdir -p
+RMDIR   := rm -rf
+CC      := gcc
+BIN     := ./bin
+OBJ     := ./obj
+INCLUDE := ./include
+SRC     := ./src
+SRCS    := $(wildcard $(SRC)/*.c)
+OBJS    := $(patsubst $(SRC)/%.c,$(OBJ)/%.o,$(SRCS), $(INCLUDE)/helper.h)
+EXE     := $(BIN)/main.exe
+CFLAGS  := -I$(INCLUDE)
+LDLIBS  := -lm
 
-CXX = gcc
-CFLAGS = -c -Iinclude
-HEADER = include/helper.h
-SRC_DIR = ./src
-VIS_DIR = ./src/visualiser
-OUTPUT_DIR = ./bin
-OBJ_LIST = $(addprefix $(OUTPUT_DIR)/, main.o closures.o csv.o latticeOps.o matrixType.o partitions.o\
- posetOps.o visualiser.o visualise_hasse.o)
-OUTPUT = $(OUTPUT_DIR)
+.PHONY: all run clean
 
-all : $(OUTPUT)
+all: $(EXE)
 
-$(OUTPUT_DIR)/main.o: $(SRC_DIR)/main.c $(HEADER)
-	$(CXX) $(CFLAGS) $(SRC_DIR)/main.c -o $(OUTPUT_DIR)/main.o 
+$(EXE): $(OBJS) | $(BIN)
+	$(CC) $(LDFLAGS) $^ -o $@ $(LDLIBS)
 
-$(OUTPUT) : $(OBJ_LIST) $(HEADER)
-	$(CC) $(CFLAGS) -o $@ $(OBJ_LIST) 
+$(OBJ)/%.o: $(SRC)/%.c | $(OBJ)
+	$(CC) $(CFLAGS) -c $< -o $@
 
-# Here's the key:
-$(OUTPUT_DIR)/%.o : $(SRC_DIR)/%.c
-	$(CC) -c $< -o $@ $(INCLUDE)
+$(BIN) $(OBJ):
+	$(MKDIR) $@
 
-$(OUTPUT_DIR)/%.o : $(VIS_DIR)/%.c
-	$(CC) -c $< -o $@ $(INCLUDE)
+run: $(EXE)
+	$<
 
-clean :
-	rm -rf $(OBJ_LIST)
-
-.PHONY: all clean
+clean:
+	$(RMDIR) $(OBJ) $(BIN)

@@ -1,6 +1,9 @@
 .vscode/
 *.exe
 *.out
+*.o
 *.txt
 *copy*
 *.gch
+bin/
+obj/
