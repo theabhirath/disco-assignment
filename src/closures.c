@@ -35,3 +35,11 @@ void transitive_closure(int n, int a[n][n], int b[n][n]){
         }
     }
 }
+
+/* calculate the equivalence closure of a relation */
+void equivalence_closure(int n, int a[n][n], int b[n][n]){
+    memcpy(b, a, sizeof(int) * n * n);
+    reflexive_closure(n, a, b);
+    symmetric_closure(n, b, b);
+    transitive_closure(n, b, b);
+}

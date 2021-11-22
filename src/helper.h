@@ -10,13 +10,13 @@
 bool matrix_equals(int n, int a[n][n], int b[n][n]);
 
 /* closures.c */
-bool reflexive_closure(int n, int a[n][n], int b[n][n]);
 bool symmetric_closure(int n, int a[n][n], int b[n][n]);
 bool transitive_closure(int n, int a[n][n], int b[n][n]);
+bool equivalence_closure(int n, int a[n][n], int b[n][n]);
 
 /* csv.c */
 void writeToCsv(int n, char websites[][MAXCHAR], int array[n][n], char * fileName);
-int **readFromCsv(FILE *filePointer, int *n, char websites[MAXN][MAXCHAR]);
+int **readFromCsv(char *filename, int *n, char websites[MAXN][MAXCHAR]);
 char *trimwhitespace(char *s);
 void freeArray(int **array, int n);
 
@@ -24,9 +24,12 @@ void freeArray(int **array, int n);
 bool isReflexive(int n, int a[n][n]);
 bool isSymmetric(int n, int a[n][n]);
 bool isTransitive(int n, int a[n][n]);
+bool isAntiReflexive(int n, int a[n][n]);
 bool isAntisymmetric(int n, int a[n][n]);
+bool isAntiTransitive(int n, int a[n][n]);
 bool isEquivalence(int n, int a[n][n]);
 bool isPartialOrdering(int n, int a[n][n]);
+bool isNDAntiSymm(int n, int a[n][n]);
 
 /* partitions.c */
 int partition(int n, int a[n][n]);
@@ -45,5 +48,6 @@ int minimal(int n, int a[n][n], int b[n]);
 int displayreachable(int ln, int n, int c[ln], int d[n][n], int b[n]);
 int reachablefrom(int ln, int n, int c[ln],  int d[n][n], int b[n]);
 int checkLattice(int n, int a[n][n]);
+void getHasseMatrix(int n, int a[n][n], int b[n][n]);
 
 #endif

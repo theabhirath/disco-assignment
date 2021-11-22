@@ -1,7 +1,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-void plot(char * fname){
+void plot_digraph(char *fname){
     int pid;
     if((pid = fork())==0){
         if(execlp("python", "python","visualise.py",fname,(char*)NULL)==-1){

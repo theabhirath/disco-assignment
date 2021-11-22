@@ -3,7 +3,8 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <unistd.h>
-#include "functions.h"
+#include "helper.h"
+
 void plot(char * fname);
 
 int main(void){
@@ -29,9 +30,9 @@ int main(void){
     printf("Hasse: %s\n", matrix_equals(5,b,c)?"Correct":"Wrong");
     char* fn = "testPartailOrder.csv";
     writeToCsv(5, ws,c, fn);
-    plot(fn);
+    plot_hasse(fn);
 }
-void plot(char * fname){
+void plot_hasse(char * fname){
     int pid;
     if((pid = fork())==0){
         if(execlp("python", "python","/mnt/c/Users/rohan/Desktop/disco-assignment/visualiser/visualise hasse.py",fname,(char*)NULL)==-1){
