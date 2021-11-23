@@ -71,8 +71,8 @@ int main(void){
                     printf("Every website has a link to itself\n");
                 }
                 else{
-                    printf("Not every website has a link to itself. Would you like to visualise how",  
-                    " the network will look if we add the minimum links to satisfy the property? ",
+                    printf("Not every website has a link to itself. Would you like to visualise how"  
+                    " the network will look if we add the minimum links to satisfy the property? "
                     "Enter 1 for yes, and 0 to return back to the main menu.\n");
                     int vis;
                     scanf("%d", &vis);
@@ -92,8 +92,8 @@ int main(void){
                     printf("The network is symmetric\n");
                 }
                 else{
-                    printf("The network is not symmetric. Would you like to visualise how",  
-                    " the network will look if we add the minimum links to satisfy the property? ",
+                    printf("The network is not symmetric. Would you like to visualise how"  
+                    " the network will look if we add the minimum links to satisfy the property? "
                     "Enter 1 for yes, and 0 to return back to the main menu.\n");
                     int vis;
                     scanf("%d", &vis);
@@ -112,9 +112,9 @@ int main(void){
                     printf("Every website has the links to all the websites reachable from it\n");
                 }
                 else{
-                    printf("Not every website has the links to all the websites reachable from it. ", 
-                    "Would you like to visualise how the network will look if we add the minimum ",
-                    "links to satisfy the property? Enter 1 for yes, and 0 to return back to ",
+                    printf("Not every website has the links to all the websites reachable from it. " 
+                    "Would you like to visualise how the network will look if we add the minimum "
+                    "links to satisfy the property? Enter 1 for yes, and 0 to return back to "
                     "the main menu.\n");
                     int vis;
                     scanf("%d", &vis);
@@ -137,7 +137,7 @@ int main(void){
             case 5:
                 result = isAntiSymmetric(n, array);
                 if (!result){
-                    printf("It is impossible to return to previous website from the current one in",
+                    printf("It is impossible to return to previous website from the current one in"
                     "one step\n");
                 }
                 break;
@@ -146,19 +146,19 @@ int main(void){
             case 6:
                 result = isNDAntiSymm(n, array);
                 if (result){
-                    printf("It is impossible to return to previous website from the current one in",
-                    "one step excluding the cases where the previous website is the same as the current", 
+                    printf("It is impossible to return to previous website from the current one in"
+                    "one step excluding the cases where the previous website is the same as the current" 
                     " one\n");
                 }
                 break;
             /* is it possible to divide the network into multiple pieces such that every website in a 
             piece has a link to every website in that piece */
             case 7:
-                bool result = isEquivalence(n, array);
+                result = isEquivalence(n, array);
                 if (result){
-                    printf("It is possible to divide the network into multiple pieces such that every",
-                    " website in a piece has a link to every website in that piece. Would you like to ",
-                    "know the nodes in each piece? Enter 1 for yes, and 0 to return back to the main ",
+                    printf("It is possible to divide the network into multiple pieces such that every"
+                    " website in a piece has a link to every website in that piece. Would you like to "
+                    "know the nodes in each piece? Enter 1 for yes, and 0 to return back to the main "
                     "menu.\n");
                     int node;
                     scanf("%d", &node);
@@ -167,9 +167,9 @@ int main(void){
                     }
                 }
                 else{
-                    printf("It is not possible to divide the network into multiple pieces such that ",
-                    "every website in a piece has a link to every website in that piece. Would you ",
-                    "like to visualise how the network will look if we add the minimum links to ",
+                    printf("It is not possible to divide the network into multiple pieces such that "
+                    "every website in a piece has a link to every website in that piece. Would you "
+                    "like to visualise how the network will look if we add the minimum links to "
                     "satisfy the property? Enter 1 for yes, and 0 to return back to the main menu.\n");
                     int vis;
                     scanf("%d", &vis);
@@ -204,11 +204,11 @@ int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *output
         {
             /* display the hasse diagram */
             case 1:
-                int b[n][n];
+                {int b[n][n];
                 getHasseMatrix(n, array, b);
                 writeToCsv(n, websites, array, outputFile);
                 plot_hasse(outputFile);
-                break;
+                break;}
         }
     }
 }
