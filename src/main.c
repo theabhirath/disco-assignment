@@ -93,8 +93,7 @@ int main(void){
     /* main menu control flow */
     while (true)
     {
-        printf("Home Menu:")
-
+        printf("Home Menu:");
         printf("Enter 1 to determine if every website has a link to itself.\n");
         printf("Enter 2 to determine if it is always possible to return back to previous website"
                " from current website in one step.\n");
@@ -143,6 +142,8 @@ int main(void){
                     int b[n][n];
                     reflexive_closure(n, array, b);
                     // print array b
+                    printf("\n");
+                    printf("The reflexive closure of the relation has the matrix representation:\n");
                     for (int i = 0; i < n; i++)
                     {
                         for (int j = 0; j < n; j++)
@@ -162,11 +163,13 @@ int main(void){
             result = isSymmetric(n, array);
             if (result)
             {
-                printf("The network is symmetric\n");
+                printf("It is always possible to return back to the previous" 
+                        " website from the current website in one step?\n");
             }
             else
             {
-                printf("The network is not symmetric. Would you like to visualise how"
+                printf("Is it possible to always return back to the previous website from the "
+                        "current website in one step. Would you like to visualise how"
                        " the network will look if we add the minimum links to satisfy the property? "
                        "Enter 1 for yes, and 0 to return back to the main menu.\n");
                 int vis;
@@ -175,6 +178,17 @@ int main(void){
                 {
                     int b[n][n];
                     symmetric_closure(n, array, b);
+                    // print array b
+                    printf("\n");
+                    printf("The symmetric closure of the relation has the matrix representation:\n");
+                    for (int i = 0; i < n; i++)
+                    {
+                        for (int j = 0; j < n; j++)
+                        {
+                            printf("%d", b[i][j]);
+                        }
+                        printf("\n");
+                    }
                     writeToCsv(n, websites, b, outputFile);
                     plot_digraph(outputFile);
                 }
@@ -200,6 +214,8 @@ int main(void){
                     int b[n][n];
                     transitive_closure(n, array, b);
                     //print array b
+                    printf("\n");
+                    printf("The transitive closure of the relation has the matrix representation:\n");
                     for (int i = 0; i < n; i++)
                     {
                         for (int j = 0; j < n; j++)
@@ -218,7 +234,7 @@ int main(void){
             result = isAntiReflexive(n, array);
             if (!result)
             {
-                printf("There exists a website that contains a link to itself\n");
+                printf("There exists a website that contains a link to itself.\n");
             }
             break;
         /* is it impossible to return to previous website from the current one in one step */
@@ -227,7 +243,7 @@ int main(void){
             if (!result)
             {
                 printf("It is impossible to return to previous website from the current one in"
-                       "one step\n");
+                       "one step.\n");
             }
             break;
         /* is it impossible to return to previous website from the current one in one step
@@ -238,7 +254,7 @@ int main(void){
             {
                 printf("It is impossible to return to previous website from the current one in"
                        "one step excluding the cases where the previous website is the same as the current"
-                       " one\n");
+                       " one.\n");
             }
             break;
         /* is it possible to divide the network into multiple pieces such that every website in a 
@@ -255,7 +271,7 @@ int main(void){
                 scanf("%d", &node);
                 if (node == 1)
                 {
-                    partition(n, array);
+                    partition(n, array, websites);
                 }
             }
             else
@@ -288,8 +304,6 @@ int main(void){
             break;
         }
     }
-    // free the memory for the double pointer
-    // freeArray(array, n);
 }
 
 int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *outputFile)
@@ -302,13 +316,11 @@ int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *output
         {
         /* display the hasse diagram */
         case 1:
-        {
             int b[n][n];
             getHasseMatrix(n, array, b);
             writeToCsv(n, websites, array, outputFile);
             plot_hasse(outputFile);
             break;
-        }
         }
     }
 }

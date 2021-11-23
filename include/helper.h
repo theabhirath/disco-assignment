@@ -30,7 +30,7 @@ bool isPartialOrdering(int n, int a[n][n]);
 bool isNDAntiSymm(int n, int a[n][n]);
 
 /* partitions.c */
-int partition(int n, int a[n][n]);
+int partition(int n, int a[n][n], char websites[MAXN][MAXCHAR]);
 
 /* latticeOps.c */
 int join(int a, int b, int n, int d[n][n]);
