@@ -25,6 +25,7 @@ int **readFromCsv(char *filename, int *n, char websites[MAXN][MAXCHAR]){
     char *token;
 
     FILE *fp = fopen(filename, "r");
+    char delimit[] = ",\n";
     int count = 0;
     //  Reading the websites to websites[i]
     if (feof(fp) != true)
@@ -37,12 +38,12 @@ int **readFromCsv(char *filename, int *n, char websites[MAXN][MAXCHAR]){
                 (*n)++;
             }
         }
-        token = strtok(row, ",");
+        token = strtok(row, delimit);
         int i = 0;
         while(token != NULL && i < *n)
         {
             strcpy(websites[i], token);
-            token = strtok(NULL, ",");
+            token = strtok(NULL, delimit);
             i++;
         }
     }
@@ -70,7 +71,7 @@ int **readFromCsv(char *filename, int *n, char websites[MAXN][MAXCHAR]){
     {
         fgets(row, MAXCHAR, fp);
 
-        token = strtok(row, ",");
+        token = strtok(row, delimit);
         int i;
         // Checking which website index(i) is the current row
         for(i = 0; i < *n; i++){
@@ -79,13 +80,13 @@ int **readFromCsv(char *filename, int *n, char websites[MAXN][MAXCHAR]){
                 break;
             }
         }
-        token = strtok(NULL, ",");
+        token = strtok(NULL, delimit);
         int j = 0;
         // Reading the 1's
         while(token != NULL)
         {
             array[i][j] = (strchr(token,'1') != NULL);
-            token = strtok(NULL, ",");
+            token = strtok(NULL, delimit);
             j++;
         }
     }
@@ -103,7 +104,7 @@ void writeToCsv(int n, char websites[MAXN][MAXCHAR], int array[n][n], char *file
         fprintf(fp,",%s",websites[i]);
     }
     for(int i = 0; i<n; i++){
-        fprintf(fp,"\n%s", websites[i]);
+        fprintf(fp,"\n%s", trimwhitespace(websites[i]));
         for(int j = 0; j<n; j++){
             fprintf(fp,",%d",array[i][j]);
         }
