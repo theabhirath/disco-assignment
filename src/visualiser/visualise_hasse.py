@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import networkx as nx
 import sys
+
 def get_labels(fname):
     f = open(fname,"r")
     header = f.readline()
@@ -11,12 +12,14 @@ def get_labels(fname):
     labels = labels[1:]
     print(labels)
     return labels
+
 def make_label_dict(labels):
     l = {}
     for i, label in enumerate(labels):
         l[i] = label
     return l
-def show_graph(adj,mylabels):
+
+def show_graph(adj, mylabels):
     rows, cols = np.where(adj==1)
     edges = zip(rows.tolist(),cols.tolist())
     

@@ -1,6 +1,8 @@
 #include <stdbool.h>
 #include <stdio.h>
 
+#include "helper.h"
+
 bool isReflexive(int n, int a[n][n]){
     for(int i = 0; i<n; i++){
         if(!a[i][i])
@@ -46,7 +48,7 @@ bool isAntiReflexive(int n, int a[n][n]){
     return true;
 }
 
-bool isAntisymmetric(int n, int a[n][n]){
+bool isAntiSymmetric(int n, int a[n][n]){
     for(int i = 0; i<n; i++){
         for(int j = 0; j<i; j++){
             if(a[i][j] && a[j][i]){
@@ -79,7 +81,7 @@ bool isEquivalence(int n, int a[n][n]){
 }
 
 bool isPartialOrdering(int n, int a[n][n]){
-    return isReflexive(n,a) && isAntisymmetric(n,a) && isTransitive(n,a);
+    return isReflexive(n,a) && isAntiSymmetric(n,a) && isTransitive(n,a);
 }
 
 /* remove diagonal elements of the relation matrix and check if the resulting matrix is 
@@ -96,7 +98,7 @@ bool isNDAntiSymm(int n, int a[n][n]){
             }
         }
     }
-    return isAntisymmetric(n, b);
+    return isAntiSymmetric(n, b);
 }
 
 

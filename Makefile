@@ -5,8 +5,11 @@ BIN     := ./bin
 OBJ     := ./obj
 INCLUDE := ./include
 SRC     := ./src
+VIS		:= ./src/visualiser
 SRCS    := $(wildcard $(SRC)/*.c)
-OBJS    := $(patsubst $(SRC)/%.c,$(OBJ)/%.o,$(SRCS), $(INCLUDE)/helper.h)
+VISRCS  := $(wildcard $(VIS)/*.c)
+OBJS    := $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SRCS))
+VISOBJS := $(patsubst $(VIS)/%.c, $(OBJ)/%.o, $(VISRCS))
 EXE     := $(BIN)/main.exe
 CFLAGS  := -I$(INCLUDE)
 LDLIBS  := -lm
@@ -15,10 +18,13 @@ LDLIBS  := -lm
 
 all: $(EXE)
 
-$(EXE): $(OBJS) | $(BIN)
+$(EXE): $(OBJS) $(VISOBJS) | $(BIN)
 	$(CC) $(LDFLAGS) $^ -o $@ $(LDLIBS)
 
 $(OBJ)/%.o: $(SRC)/%.c | $(OBJ)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ)/%.o: $(VIS)/%.c | $(OBJ)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(BIN) $(OBJ):

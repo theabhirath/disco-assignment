@@ -1,7 +1,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-#include "../include/helper.h"
+#include "helper.h"
 
 int partition(int n, int a[n][n]){
     int count = 0;

@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+#include "helper.h"
+
 #define MAXCHAR 1000
 #define MAXN 50
 
