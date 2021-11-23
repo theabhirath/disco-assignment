@@ -1,9 +1,12 @@
 #include <stdbool.h>
 #include <stdio.h>
 
+#define MAXN 50
+#define MAXCHAR 1000
+
 #include "../include/helper.h"
 
-int partition(int n, int a[n][n]){
+int partition(int n, int a[n][n], char websites[MAXN][MAXCHAR]){
     int count = 0;
     int b[n][n];
     int c[n];
@@ -36,7 +39,7 @@ int partition(int n, int a[n][n]){
     for(int i = 0; i < count; i++){
         printf("Partition [%d] is:\t", b[i][0]);
         for(int j = 0; j<c[i]; j++){
-            printf("%d\t", b[i][j]);
+            printf("%s\t", websites[b[i][j]]);
         }
         printf("\n");
     }
@@ -44,11 +47,13 @@ int partition(int n, int a[n][n]){
 }
 
 // int main(void){
+//     char websites[MAXN][MAXCHAR] = {"ikh", "ehfihe", "fekf", "hfieh", "fhgu"};
+//     // char websites[MAXN][MAXCHAR] = {};
 //     int a[6][6] = {{1,1,1,0,0,0},{1,1,1,0,0,0},{1,1,1,0,0,0},{0,0,0,1,1,0},{0,0,0,1,1,0},{0,0,0,0,0,1}};
 //     printf("Reflexive: %s\n", isReflexive(6,a) ? "true" : "false");
 //     printf("Symmetric: %s\n", isSymmetric(6,a) ? "true": "false");
-//     printf("Antisymmetric: %s\n", isAntisymmetric(6,a) ? "true": "false");
+//     printf("Antisymmetric: %s\n", isAntiSymmetric(6,a) ? "true": "false");
 //     printf("Transitive: %s\n", isTransitive(6,a) ? "true" : "false" );
 //     printf("Equivalence: %s\n", isEquivalence(6,a) ? "true" : "false" );
-//     partition(6,a);
+//     partition(6,a, websites);
 // }
