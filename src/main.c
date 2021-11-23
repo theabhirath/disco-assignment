@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <string.h>
 
-#include "helper.h"
-#include "visualiser.h"
+#include "../include/helper.h"
+#include "../include/visualiser.h"
 
 #define MAXCHAR 1000
 #define MAXN 50
@@ -12,6 +13,10 @@ int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *output
 
 int main(void){
     printf("Welcome to our DisCo project!\n");
+
+    printf("Enter 1 to determine if every website has a link to itself.\n");
+    printf("Enter 2 to determine if it always possible to return back to previous website" 
+    " from current website in one step.");
 
     int choice;
     scanf("%d", &choice);
@@ -22,30 +27,80 @@ int main(void){
     }
 
     /* reading the input csv file */
-    char *filename = "../SampleInput.csv";
+    FILE *fp;
+    char row[MAXCHAR];
+    char *token;
+
+    fp = fopen("../SampleInput.csv", "r");
+    char websites [MAXN][MAXCHAR];
     int n = 0;
-    char websites[MAXN][MAXCHAR];
-    int **array = readFromCsv(filename, &n, websites);
-
-    printf("%d\n", n);
-
-    // // print the relation matrix
-    // for (int i = 0; i < n; i++){
-    //     for(int j = 0; j < n; j++){
-    //         printf("%d", array[i][j]);
-    //     }
-    //     printf("\n");
-    // }
-
-    // print the websites
-    for (int i = 0; i < n; i++){
+    int count = 0;
+    //  Reading the websites to websites[i]
+    if (feof(fp) != true)
+    {
+        fgets(row, MAXCHAR, fp);
+        n = 1;
+        for(int i = 0; row[i] != EOF; i++)
+        {
+            if(row[i] == ',' && i!=0){
+                n++;
+            }
+        }
+        token = strtok(row, ",");
+        int i = 0;
+        while(token != NULL && i <n)
+        {
+            strcpy(websites[i], token);
+            token = strtok(NULL, ",");
+            i++;
+        }
+    }
+    // array stores the 0-1 matrix of the given relation
+    int array[n][n];
+    memset(array, 0 , n*n*sizeof(int));
+    // printf("n = %d\n", n);
+    for (int i = 0; i < n; i++)
+    {
+        char * ptr = websites[i];
+        // strcpy(websites[i], trimwhitespace(ptr));
         printf("%s\n", websites[i]);
+    }
+    // Reading the 0-1 matrix
+    while (feof(fp) != true)
+    {
+        fgets(row, MAXCHAR, fp);
+
+        token = strtok(row, ",");
+        int i;
+        // Checking which website index(i) is the current row
+        for(i = 0; i<n; i++){
+            if(strncmp(token, websites[i], 
+            strlen(token) < strlen(websites[i])?strlen(token):strlen(websites[i])) == 0){
+                break;
+            }
+        }
+        token = strtok(NULL, ",");
+        int j = 0;
+        // Reading the 1's
+        while(token != NULL)
+        {
+            array[i][j] = (strchr(token,'1') != NULL);
+            token = strtok(NULL, ",");
+            j++;
+        }
+    }
+    for (int i = 0; i < n; i++)
+    {
+        for(int j = 0; j < n; j++){
+            printf("%d", array[i][j]);
+        }
+        printf("\n");
     }
 
     /* main menu control flow */
     while(true){
         bool result;
-        char *outputFile = "outputs/output.csv";
+        char *outputFile = "../outputs/output.csv";
         switch (choice)
         {
             /* does every website have a link to itself */
@@ -63,6 +118,14 @@ int main(void){
                     if (vis == 1){
                         int b[n][n];
                         reflexive_closure(n, array, b);
+                        // print array b
+                        for (int i = 0; i < n; i++)
+                        {
+                            for(int j = 0; j < n; j++){
+                                printf("%d", b[i][j]);
+                            }
+                            printf("\n");
+                        }
                         writeToCsv(n, websites, b, outputFile);
                         plot_digraph(outputFile);
                     }
@@ -85,7 +148,7 @@ int main(void){
                         int b[n][n];
                         symmetric_closure(n, array, b);
                         writeToCsv(n, websites, b, outputFile);
-                        plot_digraph(outputFile);
+                        // plot_digraph(outputFile);
                     }
                 }
                 break;
@@ -105,8 +168,16 @@ int main(void){
                     if (vis == 1){
                         int b[n][n];
                         transitive_closure(n, array, b);
-                        writeToCsv(n, websites, b, outputFile);
-                        plot_digraph(outputFile);
+                        //print array b
+                        for (int i = 0; i < n; i++)
+                        {
+                            for(int j = 0; j < n; j++){
+                                printf("%d", b[i][j]);
+                            }
+                            printf("\n");
+                        }
+                        writeToCsv(n, websites, array, outputFile);
+                        // plot_digraph(outputFile);
                     }
                 }
                 break;
@@ -161,7 +232,7 @@ int main(void){
                         int b[n][n];
                         equivalence_closure(n, array, b);
                         writeToCsv(n, websites, b, outputFile);
-                        plot_digraph(outputFile);
+                        // plot_digraph(outputFile);
                     }
                 }
                 break;
@@ -178,7 +249,7 @@ int main(void){
         }
     }
     // free the memory for the double pointer
-    freeArray(array, n);
+    // freeArray(array, n);
 }
 
 int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *outputFile){
@@ -192,7 +263,7 @@ int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *output
                 {int b[n][n];
                 getHasseMatrix(n, array, b);
                 writeToCsv(n, websites, array, outputFile);
-                plot_hasse(outputFile);
+                // plot_hasse(outputFile);
                 break;}
         }
     }

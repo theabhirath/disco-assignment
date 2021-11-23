@@ -2,8 +2,6 @@
 #include <string.h>
 #include <stdbool.h>
 
-#include "helper.h"
-
 /* calculates reflexive closure of a relation */
 void reflexive_closure(int n, int a[n][n], int b[n][n]){
     memcpy(b, a, sizeof(int) * n * n);
@@ -12,7 +10,6 @@ void reflexive_closure(int n, int a[n][n], int b[n][n]){
     }
 }
 
-/* calculate symmetric closure of a relation */
 void symmetric_closure(int n, int a[n][n], int b[n][n]){
     memcpy(b, a, sizeof(int) * n * n);
     for (int i = 0; i < n; i++){

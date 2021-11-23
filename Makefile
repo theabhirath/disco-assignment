@@ -19,7 +19,8 @@ LDLIBS  := -lm
 all: $(EXE)
 
 $(EXE): $(OBJS) $(VISOBJS) | $(BIN)
-	$(CC) $(LDFLAGS) $^ -o $@ $(LDLIBS)
+	$(CC) $^ -o $@ $(LDLIBS) 
+	cp -r $(VIS)/plotting $(BIN)
 
 $(OBJ)/%.o: $(SRC)/%.c | $(OBJ)
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -29,9 +30,6 @@ $(OBJ)/%.o: $(VIS)/%.c | $(OBJ)
 
 $(BIN) $(OBJ):
 	$(MKDIR) $@
-
-run: $(EXE)
-	$<
 
 clean:
 	$(RMDIR) $(OBJ) $(BIN)

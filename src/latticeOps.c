@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "helper.h"
+#include "../include/helper.h"
 
 int join(int a, int b, int n, int d[n][n]){
 	int arr[n][n];
@@ -65,7 +65,7 @@ int complement(int a, int n, int b[n][n], int comp[n]){
     int maxnum = maximal(n, b, maxl);
     int minum = minimal(n, b, minl);
     for (int i=0; i<n; i++){
-        if(join(a, i, b, n)==maxl[0]  && meet(a, i, b, n)==minl[0] ){
+        if(join(a, i, n, b)==maxl[0]  && meet(a, i, n, b)==minl[0] ){
             comp[x]=i;
             x++;
         }

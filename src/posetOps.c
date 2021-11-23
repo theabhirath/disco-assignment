@@ -1,7 +1,7 @@
 #include <stdbool.h>
 #include <string.h>
 
-#include "helper.h"
+#include "../include/helper.h"
 
 int upperBound(int n, int a[n][n], int b[n]){
     int m = 0;

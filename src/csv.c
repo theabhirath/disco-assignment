@@ -95,7 +95,7 @@ int **readFromCsv(char *filename, int *n, char websites[MAXN][MAXCHAR]){
 
 //  Usage of writeToCsv:
 //  writeToCsv(n, websites, array, "test1.txt");
-void writeToCsv(int n, char websites[][MAXCHAR], int array[n][n], char *fileName)
+void writeToCsv(int n, char websites[MAXN][MAXCHAR], int array[n][n], char *fileName)
 {
     FILE *fp;
     fp = fopen(fileName,"w");
@@ -105,7 +105,7 @@ void writeToCsv(int n, char websites[][MAXCHAR], int array[n][n], char *fileName
     for(int i = 0; i<n; i++){
         fprintf(fp,"\n%s", websites[i]);
         for(int j = 0; j<n; j++){
-            fprintf(fp, ",%d",array[i][j]);
+            fprintf(fp,",%d",array[i][j]);
         }
     }
     fprintf(fp,"\n");
@@ -119,18 +119,30 @@ void freeArray(int **array, int n){
     free(array);
 }
 
-int main(void)
-{
-    int n = 0;
-    char websites[MAXN][MAXCHAR];
-    int **array = readFromCsv("../SampleInput.csv", &n, websites);
-    // print the array
-    for (int i = 0; i < n; i++){
-        for(int j = 0; j < n; j++){
-            printf("%d ", array[i][j]);
-        }
-        printf("\n");
-    }
-    freeArray(array, n);
-    return 0;
-}
+// int main(void)
+// {
+//     int n = 0;
+//     char websites[MAXN][MAXCHAR];
+//     int **arr = readFromCsv("../SampleInput.csv", &n, websites);
+
+//     // convert the double pointer to an array
+//     int array[n][n];
+//     for(int i = 0; i<n; i++){
+//         for(int j = 0; j<n; j++){
+//             array[i][j] = arr[i][j];
+//         }
+//     }
+//     // print the array
+//     for (int i = 0; i < n; i++){
+//         for(int j = 0; j < n; j++){
+//             printf("%d ", array[i][j]);
+//         }
+//         printf("\n");
+//     }
+
+//     // write the array to a file
+//     writeToCsv(n, websites, array, "../outputs/test1.csv");
+    
+//     freeArray(arr, n);
+//     return 0;
+// }
