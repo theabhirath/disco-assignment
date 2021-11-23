@@ -2,6 +2,8 @@
 #include <string.h>
 #include <stdbool.h>
 
+#include "helper.h"
+
 /* calculates reflexive closure of a relation */
 void reflexive_closure(int n, int a[n][n], int b[n][n]){
     memcpy(b, a, sizeof(int) * n * n);

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../include/helper.h"
+#include "helper.h"
 
 int join(int a, int b, int n, int d[n][n]){
 	int arr[n][n];

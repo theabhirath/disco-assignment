@@ -1,5 +1,5 @@
-#ifndef MAIN
-#define MAIN
+#ifndef HELPER_H
+#define HELPER_H
 
 #include <stdbool.h>
 
@@ -7,9 +7,10 @@
 #define MAXN 50
 
 /* closures.c */
-bool symmetric_closure(int n, int a[n][n], int b[n][n]);
-bool transitive_closure(int n, int a[n][n], int b[n][n]);
-bool equivalence_closure(int n, int a[n][n], int b[n][n]);
+void reflexive_closure(int n, int a[n][n], int b[n][n]);
+void symmetric_closure(int n, int a[n][n], int b[n][n]);
+void transitive_closure(int n, int a[n][n], int b[n][n]);
+void equivalence_closure(int n, int a[n][n], int b[n][n]);
 
 /* csv.c */
 void writeToCsv(int n, char websites[][MAXCHAR], int array[n][n], char * fileName);
@@ -22,7 +23,7 @@ bool isReflexive(int n, int a[n][n]);
 bool isSymmetric(int n, int a[n][n]);
 bool isTransitive(int n, int a[n][n]);
 bool isAntiReflexive(int n, int a[n][n]);
-bool isAntisymmetric(int n, int a[n][n]);
+bool isAntiSymmetric(int n, int a[n][n]);
 bool isAntiTransitive(int n, int a[n][n]);
 bool isEquivalence(int n, int a[n][n]);
 bool isPartialOrdering(int n, int a[n][n]);
