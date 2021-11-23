@@ -127,7 +127,7 @@ int checkLattice(int n, int a[n][n]){
         for(int j=0;j<n;j++){
             inp[0]=i;
             inp[1]=j;
-            if(displayreachable(2, n, inp, a, b)==0 || reachablefrom(2, n, inp, a, b)==0){
+            if(displayreachable(n, 2, inp, a, b)==0 || reachablefrom(n, 2, inp, a, b)==0){
                 return 0;
             }
         }

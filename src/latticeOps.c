@@ -9,7 +9,7 @@ int join(int a, int b, int n, int d[n][n]){
 	int inp[2] = {a,b};
 	int mp;
     int joins[n];
-	mp = displayreachable(inp, 2, d, n, joins);
+	mp = displayreachable(n, 2, inp, d, joins);
     if(mp == 1){
         return joins[0];
     }
@@ -34,7 +34,7 @@ int meet(int a, int b, int n, int d[n][n]){
 	int inp[2] = {a,b};
 	int mp;
     int meets[n];
-	mp = reachablefrom(inp, 2, d, n, meets);
+	mp = reachablefrom(n, 2, inp, d, meets);
     if(mp==1){
         return meets[0];
     }
@@ -63,7 +63,7 @@ int complement(int a, int n, int b[n][n], int comp[n]){
     int maxl[n];
     int minl[n];
     int maxnum = maximal(n, b, maxl);
-    int minum = minimal(n, b, maxl);
+    int minum = minimal(n, b, minl);
     for (int i=0; i<n; i++){
         if(join(a, i, b, n)==maxl[0]  && meet(a, i, b, n)==minl[0] ){
             comp[x]=i;
@@ -76,7 +76,6 @@ int complement(int a, int n, int b[n][n], int comp[n]){
 
 int isDistributive(int n, int b[n][n]){
     /* Check if all elements have only one complement, if yes, distributive */
-    int ifdist = 0;
     int noComp;
     int comps[n];
     for (int i=0; i<n; i++){
