@@ -8,7 +8,7 @@ void plot_hasse(char *fname){
         	execlp("python3", "python3", "plotting/visualise_hasse.py",fname,(char*)NULL);
         };
     }
-    exit(0);
+    // exit(0);
 }
 
 // int main(){

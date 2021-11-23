@@ -138,7 +138,7 @@ int main(void){
                         printf("\n");
                     }
                     writeToCsv(n, websites, b, outputFile);
-                    // plot_digraph(outputFile);
+                    plot_digraph(outputFile);
                 }
             }
             break;
@@ -162,7 +162,7 @@ int main(void){
                     int b[n][n];
                     symmetric_closure(n, array, b);
                     writeToCsv(n, websites, b, outputFile);
-                    // plot_digraph(outputFile);
+                    plot_digraph(outputFile);
                 }
             }
             break;
@@ -195,7 +195,7 @@ int main(void){
                         printf("\n");
                     }
                     writeToCsv(n, websites, array, outputFile);
-                    // plot_digraph(outputFile);
+                    plot_digraph(outputFile);
                 }
             }
             break;
@@ -257,7 +257,7 @@ int main(void){
                     int b[n][n];
                     equivalence_closure(n, array, b);
                     writeToCsv(n, websites, b, outputFile);
-                    // plot_digraph(outputFile);
+                    plot_digraph(outputFile);
                 }
             }
             break;
@@ -292,7 +292,7 @@ int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *output
             int b[n][n];
             getHasseMatrix(n, array, b);
             writeToCsv(n, websites, array, outputFile);
-            // plot_hasse(outputFile);
+            plot_hasse(outputFile);
             break;
         }
         }

@@ -10,7 +10,7 @@ def get_labels(fname):
     header = header[:-1]
     labels = header.split(',')
     labels = labels[1:]
-    print(labels)
+    # print(labels)
     return labels
 
 def make_label_dict(labels):
