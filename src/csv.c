@@ -4,8 +4,6 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#include "helper.h"
-
 #define MAXCHAR 1000
 #define MAXN 50
 
@@ -121,18 +119,18 @@ void freeArray(int **array, int n){
     free(array);
 }
 
-// int main(void)
-// {
-//     int n = 0;
-//     char websites[MAXN][MAXCHAR];
-//     int **array = readFromCsv("../SampleInput.csv", &n, websites);
-//     // print the array
-//     for (int i = 0; i < n; i++){
-//         for(int j = 0; j < n; j++){
-//             printf("%d ", array[i][j]);
-//         }
-//         printf("\n");
-//     }
-//     freeArray(array, n);
-//     return 0;
-// }
+int main(void)
+{
+    int n = 0;
+    char websites[MAXN][MAXCHAR];
+    int **array = readFromCsv("../SampleInput.csv", &n, websites);
+    // print the array
+    for (int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            printf("%d ", array[i][j]);
+        }
+        printf("\n");
+    }
+    freeArray(array, n);
+    return 0;
+}

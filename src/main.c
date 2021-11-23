@@ -25,37 +25,21 @@ int main(void){
     char *filename = "../SampleInput.csv";
     int n = 0;
     char websites[MAXN][MAXCHAR];
-    int **arr = readFromCsv(filename, &n, websites);
+    int **array = readFromCsv(filename, &n, websites);
 
-    /* converting the double pointer to an int array */
-    int array[n][n];
-    for (int i = 0; i < n; i++){
-        for (int j = 0; j < n; j++){
-            array[i][j] = arr[i][j];
-        }
-    }
+    printf("%d\n", n);
 
-    // print the relation matrix
-    for (int i = 0; i < n; i++){
-        for(int j = 0; j < n; j++){
-            printf("%d", array[i][j]);
-        }
-        printf("\n");
-    }
-
-    // free the memory for the double pointer
-    freeArray(arr, n);
+    // // print the relation matrix
+    // for (int i = 0; i < n; i++){
+    //     for(int j = 0; j < n; j++){
+    //         printf("%d", array[i][j]);
+    //     }
+    //     printf("\n");
+    // }
 
     // print the websites
     for (int i = 0; i < n; i++){
         printf("%s\n", websites[i]);
-    }
-    // print the relation matrix
-    for (int i = 0; i < n; i++){
-        for(int j = 0; j < n; j++){
-            printf("%d", array[i][j]);
-        }
-        printf("\n");
     }
 
     /* main menu control flow */
@@ -193,7 +177,8 @@ int main(void){
                 break;
         }
     }
-
+    // free the memory for the double pointer
+    freeArray(array, n);
 }
 
 int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *outputFile){
