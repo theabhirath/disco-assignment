@@ -8,5 +8,5 @@ void plot_digraph(char *fname){
         	execlp("python3", "python3","plotting/visualise.py",fname,(char*)NULL);
         };
     }
-    exit(0);
+    // exit(0);
 }
