@@ -12,7 +12,7 @@
 int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *outputFile);
 
 int main(void){
-    printf("Welcome to our DisCo project!\n");
+    printf("Welcome to our DisCo project!\n\n");
     /* reading the input csv file */
     FILE *fp;
     char row[MAXCHAR];
@@ -40,7 +40,6 @@ int main(void){
         while (token != NULL && i < n)
         {
             strcpy(websites[i], token);
-            printf("%d : %s\n", i, token);
             token = strtok(NULL, delimit);
             i++;
         }
@@ -52,8 +51,7 @@ int main(void){
     for (int i = 0; i < n; i++)
     {
         char *ptr = websites[i];
-        // strcpy(websites[i], trimwhitespace(ptr));
-        printf("%s\n", websites[i]);
+        ptr = trimwhitespace(ptr);
     }
     // Reading the 0-1 matrix
     while (feof(fp) != true)
@@ -81,19 +79,11 @@ int main(void){
             j++;
         }
     }
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            printf("%d", array[i][j]);
-        }
-        printf("\n");
-    }
 
     /* main menu control flow */
     while (true)
     {
-        printf("Home Menu:");
+        printf("Home Menu:\n");
         printf("Enter 1 to determine if every website has a link to itself.\n");
         printf("Enter 2 to determine if it is always possible to return back to previous website"
                " from current website in one step.\n");
@@ -103,12 +93,12 @@ int main(void){
         printf("Enter 5 to determine if it impossible to return to the previous website"
                     " from the current website in one step.\n");
         printf("Enter 6 to determine if it is impossible to return to the previous website"
-            " from the current website in one step(excluding the cases where the current"
+            " from the current website in one step (excluding the cases where the current"
             " and previous website is same).\n");
         printf("Enter 7 to determine if it is possible to divide the network into multiple"
             " pieces such that every website in a piece is reachable from every other website"
             " in that piece.\n");
-        printf("Enter 8 to determine if this relation os a poset.\n");
+        printf("Enter 8 to determine if this relation is a poset.\n");
         printf("Enter 9 to exit.\n");      
 
         int choice;
@@ -236,14 +226,23 @@ int main(void){
             {
                 printf("There exists a website that contains a link to itself.\n");
             }
+            else
+            {
+                printf("There does not exist a website that contains a link to itself\n");
+            }
             break;
         /* is it impossible to return to previous website from the current one in one step */
         case 5:
             result = isAntiSymmetric(n, array);
             if (!result)
             {
-                printf("It is impossible to return to previous website from the current one in"
-                       "one step.\n");
+                printf("\nIt is impossible to return to previous website from the current one in"
+                       " one step.\n\n");
+            }
+            else
+            {
+                printf("\nIt is possible to return to previous website from the current one in"
+                       " one step.\n\n");
             }
             break;
         /* is it impossible to return to previous website from the current one in one step
@@ -253,6 +252,11 @@ int main(void){
             if (result)
             {
                 printf("It is impossible to return to previous website from the current one in"
+                       "one step excluding the cases where the previous website is the same as the current"
+                       " one.\n");
+            }
+            else{
+                printf("It is possible to return to previous website from the current one in"
                        "one step excluding the cases where the previous website is the same as the current"
                        " one.\n");
             }
@@ -308,6 +312,7 @@ int main(void){
 
 int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *outputFile)
 {
+    int b[n][n];
     while (true)
     {
         int choice;
@@ -316,7 +321,6 @@ int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *output
         {
         /* display the hasse diagram */
         case 1:
-            int b[n][n];
             getHasseMatrix(n, array, b);
             writeToCsv(n, websites, array, outputFile);
             plot_hasse(outputFile);
