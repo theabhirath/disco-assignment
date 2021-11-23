@@ -35,9 +35,16 @@ int main(void){
         }
     }
 
+    // print the relation matrix
+    for (int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            printf("%d", array[i][j]);
+        }
+        printf("\n");
+    }
+
     // free the memory for the double pointer
     freeArray(arr, n);
-
 
     // print the websites
     for (int i = 0; i < n; i++){

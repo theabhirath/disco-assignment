@@ -7,6 +7,7 @@
 #define MAXN 50
 
 /* closures.c */
+void reflexive_closure(int n, int a[n][n], int b[n][n]);
 void symmetric_closure(int n, int a[n][n], int b[n][n]);
 void transitive_closure(int n, int a[n][n], int b[n][n]);
 void equivalence_closure(int n, int a[n][n], int b[n][n]);
@@ -22,7 +23,7 @@ bool isReflexive(int n, int a[n][n]);
 bool isSymmetric(int n, int a[n][n]);
 bool isTransitive(int n, int a[n][n]);
 bool isAntiReflexive(int n, int a[n][n]);
-// bool isAntiSymmetric(int n, int a[n][n]);
+bool isAntiSymmetric(int n, int a[n][n]);
 bool isAntiTransitive(int n, int a[n][n]);
 bool isEquivalence(int n, int a[n][n]);
 bool isPartialOrdering(int n, int a[n][n]);
