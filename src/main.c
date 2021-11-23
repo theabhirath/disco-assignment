@@ -12,6 +12,7 @@
 int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *outputFile);
 
 int main(void){
+    printf("Welcome to our DisCo project!\n");
     /* reading the input csv file */
     FILE *fp;
     char row[MAXCHAR];
@@ -92,11 +93,24 @@ int main(void){
     /* main menu control flow */
     while (true)
     {
-        printf("Welcome to our DisCo project!\n");
+        printf("Home Menu:")
 
         printf("Enter 1 to determine if every website has a link to itself.\n");
-        printf("Enter 2 to determine if it always possible to return back to previous website"
+        printf("Enter 2 to determine if it is always possible to return back to previous website"
                " from current website in one step.\n");
+        printf("Enter 3 to determine if every website has all the links to the websites"
+                    "which are reachable from it.\n");
+        printf("Enter 4 to determine if there exist any website that contains a link to itself.\n");
+        printf("Enter 5 to determine if it impossible to return to the previous website"
+                    " from the current website in one step.\n");
+        printf("Enter 6 to determine if it is impossible to return to the previous website"
+            " from the current website in one step(excluding the cases where the current"
+            " and previous website is same).\n");
+        printf("Enter 7 to determine if it is possible to divide the network into multiple"
+            " pieces such that every website in a piece is reachable from every other website"
+            " in that piece.\n");
+        printf("Enter 8 to determine if this relation os a poset.\n");
+        printf("Enter 9 to exit.\n");      
 
         int choice;
         scanf("%d", &choice);
