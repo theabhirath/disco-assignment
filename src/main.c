@@ -312,6 +312,18 @@ int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *output
     int b[n][n];
     while (true)
     {
+        printf("Menu: 4 \n");
+        printf("Enter 1 to display the Hasse diagram \n");
+        prinf("Enter 2 to display the webiste whose link is available in every other website \n");
+        printf("Enter 3 to display the webiste which has links to every other website \n");
+        printf("Enter 4 to display the webistes which do not have links to any other website "
+        "except itself \n");
+        printf("Enter 5 to display the webistes which can't be reached from any other website "
+        "except itself \n");
+        printf("Enter 6 to input some websites and display the websites reachable from all of them. \n");
+        printf("Enter 7 to input some websites and display the websites which can reach all of them. \n");
+        printf("Enter 8 to check if the relation is a lattice. \n");
+        printf("Enter 9 to return to main menu.\n");
         int choice;
         scanf("%d", &choice);
         getchar();
@@ -445,6 +457,13 @@ int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *output
 
 int latticeMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *outputFile){
     while(true){
+        printf("Menu: 5 \n");
+        printf("Enter 1 to enter two websites and display the website which is reachable "
+        "by both the websites and can reach to all other websites the two input websites can reach \n");
+        prinf("Enter 2 to enter two websites and display the website which can reach both "
+        "the websites and is reachable from all other websites which can reach the two input websites \n");
+        printf("Enter 3 to check if the lattice is distributive. \n"); 
+        printf("Enter 4 to return to menu 4. \n")       
         int choice;
         scanf("%d", &choice);
         getchar();
