@@ -10,8 +10,10 @@
 #define MAXN 50
 
 int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *outputFile);
+int latticeMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *outputFile);
 
-int main(void){
+int main(void)
+{
     printf("Welcome to our DisCo project!\n\n");
     /* reading the input csv file */
     FILE *fp;
@@ -88,18 +90,18 @@ int main(void){
         printf("Enter 2 to determine if it is always possible to return back to previous website"
                " from current website in one step.\n");
         printf("Enter 3 to determine if every website has all the links to the websites"
-                    "which are reachable from it.\n");
+               "which are reachable from it.\n");
         printf("Enter 4 to determine if there exist any website that contains a link to itself.\n");
         printf("Enter 5 to determine if it impossible to return to the previous website"
-                    " from the current website in one step.\n");
+               " from the current website in one step.\n");
         printf("Enter 6 to determine if it is impossible to return to the previous website"
-            " from the current website in one step (excluding the cases where the current"
-            " and previous website is same).\n");
+               " from the current website in one step (excluding the cases where the current"
+               " and previous website is same).\n");
         printf("Enter 7 to determine if it is possible to divide the network into multiple"
-            " pieces such that every website in a piece is reachable from every other website"
-            " in that piece.\n");
+               " pieces such that every website in a piece is reachable from every other website"
+               " in that piece.\n");
         printf("Enter 8 to determine if this relation is a poset.\n");
-        printf("Enter 9 to exit.\n");      
+        printf("Enter 9 to exit.\n");
 
         int choice;
         scanf("%d", &choice);
@@ -153,13 +155,13 @@ int main(void){
             result = isSymmetric(n, array);
             if (result)
             {
-                printf("It is always possible to return back to the previous" 
-                        " website from the current website in one step?\n");
+                printf("It is always possible to return back to the previous"
+                       " website from the current website in one step?\n");
             }
             else
             {
                 printf("Is it possible to always return back to the previous website from the "
-                        "current website in one step. Would you like to visualise how"
+                       "current website in one step. Would you like to visualise how"
                        " the network will look if we add the minimum links to satisfy the property? "
                        "Enter 1 for yes, and 0 to return back to the main menu.\n");
                 int vis;
@@ -255,7 +257,8 @@ int main(void){
                        "one step excluding the cases where the previous website is the same as the current"
                        " one.\n");
             }
-            else{
+            else
+            {
                 printf("It is possible to return to previous website from the current one in"
                        "one step excluding the cases where the previous website is the same as the current"
                        " one.\n");
@@ -300,8 +303,12 @@ int main(void){
             result = isPartialOrdering(n, array);
             if (result)
             {
-                printf("This relation is an example of a poset.\n");
+                // printf("This relation is an example of a poset.\n");
+                printf("Yes\n");
                 posetMenu(n, array, websites, outputFile);
+            }
+            else{
+                printf("No\n");
             }
             break;
         default:
@@ -317,6 +324,7 @@ int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *output
     {
         int choice;
         scanf("%d", &choice);
+        getchar();
         switch (choice)
         {
         /* display the hasse diagram */
@@ -325,6 +333,168 @@ int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *output
             writeToCsv(n, websites, array, outputFile);
             plot_hasse(outputFile);
             break;
+        /* display website whose link is available in every website */
+        case 2:{
+            int c[n];
+            int m = greatestElement(n, array, c);
+            if (m > 0)
+            {
+                printf("%s\n", websites[0]);
+            }
+            else
+            {
+                printf("There is no website whose link is available"
+                       " in every website.\n");
+            }
+            break;
+        }
+        /* display website which has links to every website*/
+        case 3:{
+            int c[n];
+            int m = leastElement(n, array, c);
+            if (m > 0)
+            {
+                printf("%s\n", websites[0]);
+            }
+            else
+            {
+                printf("There is no website which has links"
+                       " to every website.\n");
+            }      
+            break;
+        }
+        case 4:{
+            int c[n];
+            int m = maximal(n,array,c);
+            if (m > 0)
+            {
+                for(int i = 0; i<m; i++){
+                    printf("%s ", websites[i]);
+                }
+                printf("\n");
+            }
+            else
+            {
+                printf("There is no website which does not have "
+                "links to any other website except itself.\n");
+            }      
+            break;
+
+        }
+        case 5:{
+            int c[n];
+            int m = minimal(n,array,c);
+            if (m > 0)
+            {
+                for(int i = 0; i<m; i++){
+                    printf("%s ", websites[i]);
+                }
+                printf("\n");
+            }
+            else
+            {
+                printf("There is no website which can't be reached from "
+                "any other website except itself.\n");
+            }      
+            break;
+        }
+        case 6:{
+            printf("Enter number of websites:\n");
+            int ln;
+            scanf("%d", &ln);
+            getchar();
+            printf("Enter %d website indices(0-indexed):\n", ln);
+            int c[ln];
+            for(int i = 0; i<ln; i++){
+                scanf("%d", &c[i]);
+                getchar();
+            }
+            int b[n];
+            int m = upperBound(ln, n, c, array, b);
+            for(int i = 0; i<m; i++){
+                printf("%s ", websites[i]);
+            }
+            printf("\n");
+            break;
+        }
+        case 7:{
+            printf("Enter number of websites:\n");
+            int ln;
+            scanf("%d", &ln);
+            getchar();
+            printf("Enter %d website indices(0-indexed):\n", ln);
+            int c[ln];
+            for(int i = 0; i<ln; i++){
+                scanf("%d", &c[i]);
+                getchar();
+            }
+            int b[n];
+            int m = lowerBound(ln, n, c, array, b);
+            for(int i = 0; i<m; i++){
+                printf("%s ", websites[i]);
+            }
+            printf("\n");
+            break;
+        }
+        case 8:
+            if(checkLattice(n, array)){
+                printf("Yes\n");
+                latticeMenu(n, array, websites, outputFile);
+            }
+            else{
+                printf("No\n");
+            }
+            break;
+        case 9:
+            return 0;
+        default:
+            break;
+        }
+    }
+}
+
+int latticeMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *outputFile){
+    while(true){
+        int choice;
+        scanf("%d", &choice);
+        getchar();
+        switch (choice){
+            case 1:{
+                int a,b;
+                printf("Enter indices of two websites A and B:\n");
+                scanf("%d", &a);
+                scanf("%d", &b);
+                int m = join(a, b, n, array);
+                for(int i = 0; i<m; i++){
+                    printf("%s ", websites[i]);
+                }
+                printf("\n");
+                break;
+            }
+            case 2:{
+                int a,b;
+                printf("Enter indices of two websites A and B:\n");
+                scanf("%d", &a);
+                scanf("%d", &b);
+                int m = meet(a, b, n, array);
+                for(int i = 0; i<m; i++){
+                    printf("%s ", websites[i]);
+                }
+                printf("\n");
+                break;
+            }
+            case 3:
+                if(isDistributive(n, array)){
+                    printf("Yes\n");
+                }
+                else{
+                    printf("No\n");
+                }
+                break;
+            case 4:
+                return 0;
+            default:
+                break;
         }
     }
 }

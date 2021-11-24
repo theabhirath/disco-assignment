@@ -3,7 +3,7 @@
 
 #include "../include/helper.h"
 
-int upperBound(int n, int a[n][n], int b[n]){
+int greatestElement(int n, int a[n][n], int b[n]){
     int m = 0;
     for(int i = 0; i<n; i++){
         bool hasAllLinks = true;
@@ -18,12 +18,13 @@ int upperBound(int n, int a[n][n], int b[n]){
         {
             b[m] = i;
             m++;
+            break; 
         }
     }
     return m;
 }
 
-int lowerBound(int n, int a[n][n], int b[n]){
+int leastElement(int n, int a[n][n], int b[n]){
     int m = 0;
     for(int i = 0; i<n; i++){
         bool hasAllLinks = true;
@@ -38,6 +39,7 @@ int lowerBound(int n, int a[n][n], int b[n]){
         {
             b[m] = i;
             m++;
+            break;
         }
     }
     return m;
@@ -72,7 +74,7 @@ int minimal(int n, int a[n][n], int b[n]){
     return m;
 }
 
-int displayreachable(int n, int ln, int c[ln], int d[n][n],  int b[n]){
+int upperBound(int n, int ln, int c[ln], int d[n][n],  int b[n]){
     /*6*/
 	int a[n][n];
 	memcpy(a, d, sizeof(int[n][n]));
@@ -93,7 +95,7 @@ int displayreachable(int n, int ln, int c[ln], int d[n][n],  int b[n]){
 	return dc;
 }
 
-int reachablefrom(int n, int ln, int c[ln], int d[n][n],  int b[n]){
+int lowerBound(int n, int ln, int c[ln], int d[n][n],  int b[n]){
     /*7*/
 	int a[n][n];
 	memcpy(a, d, sizeof(int[n][n]));
@@ -124,12 +126,12 @@ int checkLattice(int n, int a[n][n]){
         return 0;
     }
     int inp[2];
-    /*displayreachable and reachablefrom can't be zero for any pair*/
+    /*upperBound and lowerBound can't be zero for any pair*/
     for(int i=0; i<n; i++){
         for(int j=0;j<n;j++){
             inp[0]=i;
             inp[1]=j;
-            if(displayreachable(n, 2, inp, a, b)==0 || reachablefrom(n, 2, inp, a, b)==0){
+            if(upperBound(n, 2, inp, a, b)==0 || lowerBound(n, 2, inp, a, b)==0){
                 return 0;
             }
         }

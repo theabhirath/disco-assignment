@@ -9,7 +9,7 @@ int join(int a, int b, int n, int d[n][n]){
 	int inp[2] = {a,b};
 	int mp;
     int joins[n];
-	mp = displayreachable(n, 2, inp, d, joins);
+	mp = upperBound(n, 2, inp, d, joins);
     if(mp == 1){
         return joins[0];
     }
@@ -34,7 +34,7 @@ int meet(int a, int b, int n, int d[n][n]){
 	int inp[2] = {a,b};
 	int mp;
     int meets[n];
-	mp = reachablefrom(n, 2, inp, d, meets);
+	mp = lowerBound(n, 2, inp, d, meets);
     if(mp==1){
         return meets[0];
     }
