@@ -39,12 +39,12 @@ int complement(int a, int n, int b[n][n], int comp[n]);
 int isDistributive(int n, int b[n][n]);
 
 /* posetOps.c */
-int upperBound(int n, int a[n][n], int b[n]);
-int lowerBound(int n, int a[n][n], int b[n]);
+int greatestElement(int n, int a[n][n], int b[n]);
+int leastElement(int n, int a[n][n], int b[n]);
 int maximal(int n, int a[n][n], int b[n]);
 int minimal(int n, int a[n][n], int b[n]);
-int displayreachable(int ln, int n, int c[ln], int d[n][n], int b[n]);
-int reachablefrom(int ln, int n, int c[ln],  int d[n][n], int b[n]);
+int upperBound(int ln, int n, int c[ln], int d[n][n], int b[n]);
+int lowerBound(int ln, int n, int c[ln],  int d[n][n], int b[n]);
 int checkLattice(int n, int a[n][n]);
 void getHasseMatrix(int n, int a[n][n], int b[n][n]);
 
