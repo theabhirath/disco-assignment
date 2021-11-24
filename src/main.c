@@ -120,11 +120,11 @@ int main(void)
             result = isReflexive(n, array);
             if (result)
             {
-                printf("Every website has a link to itself\n");
+                printf("Yes. \n");
             }
             else
             {
-                printf("Not every website has a link to itself. Would you like to visualise how"
+                printf("No. \n Would you like to visualise how"
                        " the network will look if we add the minimum links to satisfy the property? "
                        "Enter 1 for yes, and 0 to return back to the main menu.\n");
                 int vis;
@@ -155,13 +155,11 @@ int main(void)
             result = isSymmetric(n, array);
             if (result)
             {
-                printf("It is always possible to return back to the previous"
-                       " website from the current website in one step?\n");
+                printf("Yes. \n");
             }
             else
             {
-                printf("Is it possible to always return back to the previous website from the "
-                       "current website in one step. Would you like to visualise how"
+                printf("No. \n Would you like to visualise how"
                        " the network will look if we add the minimum links to satisfy the property? "
                        "Enter 1 for yes, and 0 to return back to the main menu.\n");
                 int vis;
@@ -191,11 +189,11 @@ int main(void)
             result = isTransitive(n, array);
             if (result)
             {
-                printf("Every website has the links to all the websites reachable from it\n");
+                printf("Yes. \n");
             }
             else
             {
-                printf("Not every website has the links to all the websites reachable from it. "
+                printf("No. \n "
                        "Would you like to visualise how the network will look if we add the minimum "
                        "links to satisfy the property? Enter 1 for yes, and 0 to return back to "
                        "the main menu.\n");
@@ -226,11 +224,11 @@ int main(void)
             result = isAntiReflexive(n, array);
             if (!result)
             {
-                printf("There exists a website that contains a link to itself.\n");
+                printf("Yes. \n");
             }
             else
             {
-                printf("There does not exist a website that contains a link to itself\n");
+                printf("No. \n");
             }
             break;
         /* is it impossible to return to previous website from the current one in one step */
@@ -238,13 +236,11 @@ int main(void)
             result = isAntiSymmetric(n, array);
             if (!result)
             {
-                printf("\nIt is impossible to return to previous website from the current one in"
-                       " one step.\n\n");
+                printf("\n Yes.\n");
             }
             else
             {
-                printf("\nIt is possible to return to previous website from the current one in"
-                       " one step.\n\n");
+                printf("\n No. \n");
             }
             break;
         /* is it impossible to return to previous website from the current one in one step
@@ -253,15 +249,11 @@ int main(void)
             result = isNDAntiSymm(n, array);
             if (result)
             {
-                printf("It is impossible to return to previous website from the current one in"
-                       "one step excluding the cases where the previous website is the same as the current"
-                       " one.\n");
+                printf("Yes. \n");
             }
             else
             {
-                printf("It is possible to return to previous website from the current one in"
-                       "one step excluding the cases where the previous website is the same as the current"
-                       " one.\n");
+                printf("No. \n");
             }
             break;
         /* is it possible to divide the network into multiple pieces such that every website in a 
@@ -270,9 +262,8 @@ int main(void)
             result = isEquivalence(n, array);
             if (result)
             {
-                printf("It is possible to divide the network into multiple pieces such that every"
-                       " website in a piece has a link to every website in that piece. Would you like to "
-                       "know the nodes in each piece? Enter 1 for yes, and 0 to return back to the main "
+                printf("Yes. \n"
+                       "Would you like to know the nodes in each piece? Enter 1 for yes, and 0 to return back to the main "
                        "menu.\n");
                 int node;
                 scanf("%d", &node);
@@ -283,9 +274,8 @@ int main(void)
             }
             else
             {
-                printf("It is not possible to divide the network into multiple pieces such that "
-                       "every website in a piece has a link to every website in that piece. Would you "
-                       "like to visualise how the network will look if we add the minimum links to "
+                printf("No. \n "
+                       "Would you like to visualise how the network will look if we add the minimum links to "
                        "satisfy the property? Enter 1 for yes, and 0 to return back to the main menu.\n");
                 int vis;
                 scanf("%d", &vis);
