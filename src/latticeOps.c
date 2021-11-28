@@ -81,7 +81,7 @@ int isDistributive(int n, int b[n][n]){
     for (int i=0; i<n; i++){
         for (int j=0; j<n; j++){
             /*Check for complements*/
-            noComp = complement(i, n, b, comps);
+            noComp = complement(b[i][j], n, b, comps);
             if(noComp>1){
                 return 0;
             }
