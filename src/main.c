@@ -12,15 +12,24 @@
 int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *outputFile);
 int latticeMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *outputFile);
 
-int main(void)
+int main(int argc, char *argv[])
 {
     printf("Welcome to our DisCo project!\n\n");
     /* reading the input csv file */
     FILE *fp;
     char row[MAXCHAR];
     char *token;
-
-    fp = fopen("../SampleInput.csv", "r");
+    if(argc == 1){
+        fp = fopen("../SampleInput.csv", "r");
+    }
+    else if(argc == 2){
+        printf("%s\n", argv[1]);
+        fp = fopen(argv[1], "r");
+    }
+    else{
+        printf("Please use 0 or 1 command line arguments.\n"
+        "Usage: ./main.exe FilePathRelativeToHome\n");
+        return 0;}
     char websites[MAXN][MAXCHAR];
     int n = 0;
     int count = 0;
@@ -84,7 +93,13 @@ int main(void)
 
     /* main menu control flow */
     while (true)
-    {
+    {   
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j<n; j++){
+                printf("%d",array[i][j]);
+            }
+            printf("\n");
+        }
         printf("Home Menu:\n");
         printf("Enter 1 to determine if every website has a link to itself.\n");
         printf("Enter 2 to determine if it is always possible to return back to previous website"
@@ -236,11 +251,11 @@ int main(void)
             result = isAntiSymmetric(n, array);
             if (!result)
             {
-                printf("\n Yes.\n");
+                printf("Yes.\n");
             }
             else
             {
-                printf("\n No. \n");
+                printf("No. \n");
             }
             break;
         /* is it impossible to return to previous website from the current one in one step
@@ -314,9 +329,9 @@ int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *output
     {
         printf("Menu: 4 \n");
         printf("Enter 1 to display the Hasse diagram \n");
-        prinf("Enter 2 to display the webiste whose link is available in every other website \n");
-        printf("Enter 3 to display the webiste which has links to every other website \n");
-        printf("Enter 4 to display the webistes which do not have links to any other website "
+        printf("Enter 2 to display the website whose link is available in every other website \n");
+        printf("Enter 3 to display the website which has links to every other website \n");
+        printf("Enter 4 to display the websites which do not have links to any other website "
         "except itself \n");
         printf("Enter 5 to display the webistes which can't be reached from any other website "
         "except itself \n");
@@ -341,7 +356,7 @@ int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *output
             int m = greatestElement(n, array, c);
             if (m > 0)
             {
-                printf("%s\n", websites[0]);
+                printf("%s\n", websites[c[0]]);
             }
             else
             {
@@ -356,7 +371,7 @@ int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *output
             int m = leastElement(n, array, c);
             if (m > 0)
             {
-                printf("%s\n", websites[0]);
+                printf("%s\n", websites[c[0]]);
             }
             else
             {
@@ -371,7 +386,7 @@ int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *output
             if (m > 0)
             {
                 for(int i = 0; i<m; i++){
-                    printf("%s ", websites[i]);
+                    printf("%s ", websites[c[i]]);
                 }
                 printf("\n");
             }
@@ -389,7 +404,7 @@ int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *output
             if (m > 0)
             {
                 for(int i = 0; i<m; i++){
-                    printf("%s ", websites[i]);
+                    printf("%s ", websites[c[i]]);
                 }
                 printf("\n");
             }
@@ -414,7 +429,7 @@ int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *output
             int b[n];
             int m = upperBound(ln, n, c, array, b);
             for(int i = 0; i<m; i++){
-                printf("%s ", websites[i]);
+                printf("%s ", websites[b[i]]);
             }
             printf("\n");
             break;
@@ -433,7 +448,7 @@ int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *output
             int b[n];
             int m = lowerBound(ln, n, c, array, b);
             for(int i = 0; i<m; i++){
-                printf("%s ", websites[i]);
+                printf("%s ", websites[b[i]]);
             }
             printf("\n");
             break;
@@ -460,10 +475,10 @@ int latticeMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *outp
         printf("Menu: 5 \n");
         printf("Enter 1 to enter two websites and display the website which is reachable "
         "by both the websites and can reach to all other websites the two input websites can reach \n");
-        prinf("Enter 2 to enter two websites and display the website which can reach both "
+        printf("Enter 2 to enter two websites and display the website which can reach both "
         "the websites and is reachable from all other websites which can reach the two input websites \n");
         printf("Enter 3 to check if the lattice is distributive. \n"); 
-        printf("Enter 4 to return to menu 4. \n")       
+        printf("Enter 4 to return to menu 4. \n");
         int choice;
         scanf("%d", &choice);
         getchar();
