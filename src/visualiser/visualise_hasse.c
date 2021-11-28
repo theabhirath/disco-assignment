@@ -12,6 +12,6 @@ void plot_hasse(char *fname){
 }
 
 // int main(){
-//     plot("../src/testPartailOrder.csv");
+//     plot_hasse("");
 //     return 0;
 // }
