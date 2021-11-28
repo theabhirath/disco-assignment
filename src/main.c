@@ -94,12 +94,6 @@ int main(int argc, char *argv[])
     /* main menu control flow */
     while (true)
     {   
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j<n; j++){
-                printf("%d",array[i][j]);
-            }
-            printf("\n");
-        }
         printf("Home Menu:\n");
         printf("Enter 1 to determine if every website has a link to itself.\n");
         printf("Enter 2 to determine if it is always possible to return back to previous website"
@@ -347,7 +341,7 @@ int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *output
         /* display the hasse diagram */
         case 1:
             getHasseMatrix(n, array, b);
-            writeToCsv(n, websites, array, outputFile);
+            writeToCsv(n, websites, b, outputFile);
             plot_hasse(outputFile);
             break;
         /* display website whose link is available in every website */
@@ -380,6 +374,7 @@ int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *output
             }      
             break;
         }
+        /* display the websites which do not have links to any other website except itself*/
         case 4:{
             int c[n];
             int m = maximal(n,array,c);
@@ -396,8 +391,8 @@ int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *output
                 "links to any other website except itself.\n");
             }      
             break;
-
         }
+        /* display the webistes which can't be reached from any other website except itself */
         case 5:{
             int c[n];
             int m = minimal(n,array,c);
@@ -415,6 +410,7 @@ int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *output
             }      
             break;
         }
+        /* input some websites and display the websites reachable from all of them*/
         case 6:{
             printf("Enter number of websites:\n");
             int ln;
@@ -427,13 +423,14 @@ int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *output
                 getchar();
             }
             int b[n];
-            int m = upperBound(ln, n, c, array, b);
+            int m = upperBound(n, ln, c, array, b);
             for(int i = 0; i<m; i++){
                 printf("%s ", websites[b[i]]);
             }
             printf("\n");
             break;
         }
+        /* input some websites and display the websites which can reach all of them*/
         case 7:{
             printf("Enter number of websites:\n");
             int ln;
@@ -446,13 +443,14 @@ int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *output
                 getchar();
             }
             int b[n];
-            int m = lowerBound(ln, n, c, array, b);
+            int m = lowerBound(n, ln, c, array, b);
             for(int i = 0; i<m; i++){
                 printf("%s ", websites[b[i]]);
             }
             printf("\n");
             break;
         }
+        /* check if the relation is a lattice*/
         case 8:
             if(checkLattice(n, array)){
                 printf("Yes\n");
@@ -462,6 +460,7 @@ int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *output
                 printf("No\n");
             }
             break;
+        /* return to main menu*/
         case 9:
             return 0;
         default:
