@@ -49,12 +49,17 @@ int maximal(int n, int a[n][n], int b[n]){
     int m = 0;
     for (int i = 0; i < n; i++)
     {
+        bool isMaximal = true;
         for (int j = 0; j < n; j++)
         {
-            if(j!=i && !a[i][j]){
-                b[m] = i;
-                m++;
+            if(j!=i && a[i][j]){
+                isMaximal = false;
+                break;
             }
+        }
+        if (isMaximal){
+            b[m] = i;
+            m++;
         }   
     }
         return m;
@@ -63,15 +68,23 @@ int maximal(int n, int a[n][n], int b[n]){
 
 int minimal(int n, int a[n][n], int b[n]){
     int m = 0;
-    for (int i = 0; i < n; i++){
-        for(int j = 0; j<n; j++){
-            if(j != i && !a[j][i]){
-                b[m] = i;
-                m++;
+    for (int i = 0; i < n; i++)
+    {
+        bool isMinimal = true;
+        for (int j = 0; j < n; j++)
+        {
+            if(j!=i && a[j][i]){
+                isMinimal = false;
+                break;
             }
         }
+        if (isMinimal){
+            b[m] = i;
+            m++;
+        }   
     }
-    return m;
+        return m;
+    
 }
 
 int upperBound(int n, int ln, int c[ln], int d[n][n],  int b[n]){
