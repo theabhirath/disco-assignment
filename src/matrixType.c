@@ -84,22 +84,6 @@ bool isPartialOrdering(int n, int a[n][n]){
     return isReflexive(n,a) && isAntiSymmetric(n,a) && isTransitive(n,a);
 }
 
-/* remove diagonal elements of the relation matrix and check if the resulting matrix is 
-anti-symmetric */
-bool isNDAntiSymm(int n, int a[n][n]){
-    int b[n][n];
-    for(int i = 0; i<n; i++){
-        for(int j = 0; j<n; j++){
-            if(i!=j){
-                b[i][j] = a[i][j];
-            }
-            else{
-                b[i][j] = 0;
-            }
-        }
-    }
-    return isAntiSymmetric(n, b);
-}
 
 
 // int main(void){

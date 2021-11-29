@@ -10,7 +10,7 @@ def get_labels(fname):
     header = header[:-1]
     labels = header.split(',')
     labels = labels[1:]
-    print(labels)
+    # print(labels)
     return labels
 
 def make_label_dict(labels):
@@ -43,7 +43,7 @@ def show_graph(adj, mylabels):
 
     G.add_edges_from(edges)
     nodes = arange(int(np.shape(adj)[0]))
-    nx.draw_networkx(G, pos, nodelist=nodes, node_color='#c4daef')
+    nx.draw_networkx(G, pos, nodelist=nodes,labels = mylabels ,with_labels=True, node_color='#c4daef')
     plt.show()
     plt.close()
     
