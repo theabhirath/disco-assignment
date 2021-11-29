@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
         fp = fopen("../SampleInput.csv", "r");
     }
     else if(argc == 2){
-        printf("%s\n", argv[1]);
+        // printf("%s\n", argv[1]);
         fp = fopen(argv[1], "r");
     }
     else{
@@ -99,7 +99,7 @@ int main(int argc, char *argv[])
         printf("Enter 2 to determine if it is always possible to return back to previous website"
                " from current website in one step.\n");
         printf("Enter 3 to determine if every website has all the links to the websites"
-               "which are reachable from it.\n");
+               " which are reachable from it.\n");
         printf("Enter 4 to determine if there exist any website that contains a link to itself.\n");
         printf("Enter 5 to determine if it impossible to return to the previous website"
                " from the current website in one step.\n");
@@ -242,8 +242,8 @@ int main(int argc, char *argv[])
             break;
         /* is it impossible to return to previous website from the current one in one step */
         case 5:
-            result = isAntiSymmetric(n, array);
-            if (!result)
+            result = isAntiSymmetric(n, array) && isAntiReflexive(n,array);
+            if (result)
             {
                 printf("Yes.\n");
             }
@@ -255,7 +255,7 @@ int main(int argc, char *argv[])
         /* is it impossible to return to previous website from the current one in one step
             excluding the cases where the previous website is the same as the current one */
         case 6:
-            result = isNDAntiSymm(n, array);
+            result = isAntiSymmetric(n, array);
             if (result)
             {
                 printf("Yes. \n");

@@ -27,7 +27,6 @@ bool isAntiSymmetric(int n, int a[n][n]);
 bool isAntiTransitive(int n, int a[n][n]);
 bool isEquivalence(int n, int a[n][n]);
 bool isPartialOrdering(int n, int a[n][n]);
-bool isNDAntiSymm(int n, int a[n][n]);
 
 /* partitions.c */
 int partition(int n, int a[n][n], char websites[MAXN][MAXCHAR]);
