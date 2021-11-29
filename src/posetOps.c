@@ -1,6 +1,6 @@
 #include <stdbool.h>
 #include <string.h>
-
+#include <stdio.h>
 #include "../include/helper.h"
 
 int greatestElement(int n, int a[n][n], int b[n]){
@@ -96,10 +96,10 @@ int upperBound(int n, int ln, int c[ln], int d[n][n],  int b[n]){
 	int dc = 0;
 	for (int i=0; i<n; i++){
 		for(int j=0; j<ln; j++){
-			if(a[arr[j],i]==0){
+			if(d[c[j]][i]==0){
 				break;
 			}
-			if(j==ln-1){
+			if(j==(ln-1)){
 				b[dc]=i;
 				dc++;
 			}
@@ -117,7 +117,7 @@ int lowerBound(int n, int ln, int c[ln], int d[n][n],  int b[n]){
 	int dc = 0;
 	for (int i=0; i<n; i++){
 		for(int j=0; j<ln; j++){
-			if(a[i,arr[j]]==0){
+			if(a[i][arr[j]]==0){
 				break;
 			}
 			if(j==ln-1){

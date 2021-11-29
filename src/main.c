@@ -488,10 +488,7 @@ int latticeMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *outp
                 scanf("%d", &a);
                 scanf("%d", &b);
                 int m = join(a, b, n, array);
-                for(int i = 0; i<m; i++){
-                    printf("%s ", websites[i]);
-                }
-                printf("\n");
+                printf("%s\n", websites[m]);
                 break;
             }
             case 2:{
@@ -500,10 +497,7 @@ int latticeMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *outp
                 scanf("%d", &a);
                 scanf("%d", &b);
                 int m = meet(a, b, n, array);
-                for(int i = 0; i<m; i++){
-                    printf("%s ", websites[i]);
-                }
-                printf("\n");
+                printf("%s\n", websites[m]);
                 break;
             }
             case 3:

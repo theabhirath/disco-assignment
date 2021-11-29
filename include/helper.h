@@ -43,8 +43,8 @@ int greatestElement(int n, int a[n][n], int b[n]);
 int leastElement(int n, int a[n][n], int b[n]);
 int maximal(int n, int a[n][n], int b[n]);
 int minimal(int n, int a[n][n], int b[n]);
-int upperBound(int ln, int n, int c[ln], int d[n][n], int b[n]);
-int lowerBound(int ln, int n, int c[ln],  int d[n][n], int b[n]);
+int upperBound(int n, int ln, int c[ln], int d[n][n], int b[n]);
+int lowerBound(int n, int ln, int c[ln],  int d[n][n], int b[n]);
 int checkLattice(int n, int a[n][n]);
 void getHasseMatrix(int n, int a[n][n], int b[n][n]);
 

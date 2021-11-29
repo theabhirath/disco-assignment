@@ -17,7 +17,7 @@ int join(int a, int b, int n, int d[n][n]){
 	/* Select the one which can reach every other one. */
         for(int i = 0; i < mp; i++){
             for(int j=0;j<mp;j++){
-                if(d[joins[i],joins[j]]==0){
+                if(d[joins[i]][joins[j]]==0){
                     break;
                 }
                 if(j==mp-1){
@@ -42,7 +42,7 @@ int meet(int a, int b, int n, int d[n][n]){
 	/* Select the one which is reachable from every other one. */
         for(int i=0; i<mp; i++){
             for(int j=0;j<mp;j++){
-                if(d[meets[j],meets[i]]==0){
+                if(d[meets[j]][meets[i]]==0){
                     break;
                 }
                 if(j==mp-1){
