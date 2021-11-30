@@ -12,6 +12,8 @@
 int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *outputFile);
 int latticeMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *outputFile);
 
+//Program Expects a csv file name stored in the home directory of the project
+//If not given, SampleInput.csv is opened by default 
 int main(int argc, char *argv[])
 {
     printf("Welcome to our DisCo project!\n\n");
@@ -23,8 +25,10 @@ int main(int argc, char *argv[])
         fp = fopen("../SampleInput.csv", "r");
     }
     else if(argc == 2){
-        // printf("%s\n", argv[1]);
-        fp = fopen(argv[1], "r");
+        char fn[255];
+        strcpy( fn, "../" );
+        strcat( fn, argv[1] );
+        fp = fopen(fn, "r");
     }
     else{
         printf("Please use 0 or 1 command line arguments.\n"
