@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include "../include/helper.h"
 
+/* finds the greatest element in the poset if it exists */
 int greatestElement(int n, int a[n][n], int b[n]){
     int m = 0;
     for(int i = 0; i<n; i++){
@@ -24,6 +25,7 @@ int greatestElement(int n, int a[n][n], int b[n]){
     return m;
 }
 
+/* finds the least element of the poset if it exists */
 int leastElement(int n, int a[n][n], int b[n]){
     int m = 0;
     for(int i = 0; i<n; i++){
@@ -45,6 +47,7 @@ int leastElement(int n, int a[n][n], int b[n]){
     return m;
 }
 
+/* finds the maximal elements in the poset */
 int maximal(int n, int a[n][n], int b[n]){
     int m = 0;
     for (int i = 0; i < n; i++)
@@ -66,6 +69,7 @@ int maximal(int n, int a[n][n], int b[n]){
     
 }
 
+/* finds the minimal elements in the poset */
 int minimal(int n, int a[n][n], int b[n]){
     int m = 0;
     for (int i = 0; i < n; i++)
@@ -87,12 +91,10 @@ int minimal(int n, int a[n][n], int b[n]){
     
 }
 
+/* finds upper bound of the elements in array c (with "ln" elements) wrt. array d (with n^2 elements)
+ and stores it in array b */
 int upperBound(int n, int ln, int c[ln], int d[n][n],  int b[n]){
     /*6*/
-	int a[n][n];
-	memcpy(a, d, sizeof(int[n][n]));
-	int arr[ln];
-	memcpy(arr, c, sizeof(int[ln]));
 	int dc = 0;
 	for (int i=0; i<n; i++){
 		for(int j=0; j<ln; j++){
@@ -108,16 +110,14 @@ int upperBound(int n, int ln, int c[ln], int d[n][n],  int b[n]){
 	return dc;
 }
 
+/* finds lower bound of the elements in array c (with "ln" elements) wrt. array d (with n^2 elements)
+ and stores it in array b */
 int lowerBound(int n, int ln, int c[ln], int d[n][n],  int b[n]){
     /*7*/
-	int a[n][n];
-	memcpy(a, d, sizeof(int[n][n]));
-	int arr[ln];
-	memcpy(arr, c, sizeof(int[ln]));
 	int dc = 0;
 	for (int i=0; i<n; i++){
 		for(int j=0; j<ln; j++){
-			if(a[i][arr[j]]==0){
+			if(d[i][c[j]]==0){
 				break;
 			}
 			if(j==ln-1){
@@ -130,7 +130,7 @@ int lowerBound(int n, int ln, int c[ln], int d[n][n],  int b[n]){
 }			
 
 int checkLattice(int n, int a[n][n]){
-/*Lattice has only one minimal and one maximal. Use functions for part 4 and part 5 of Menu 4. Any pair of elements has just one join and one meet*/	
+/* Lattice has only one minimal and one maximal. Use functions for part 4 and part 5 of Menu 4. Any pair of elements has just one join and one meet */	
     int b[n];
     if(maximal(n, a, b)>1){
         return 0;
@@ -178,35 +178,4 @@ void getHasseMatrix(int n, int a[n][n], int b[n][n]){
         }             
     }
 }
-// Testing working of getHasseMatrix:
 
-// int main(void){
-//     int a[5][5] = {
-//         {1, 0, 1, 1, 1},
-//         {0, 1, 1, 1, 1},
-//         {0, 0, 1, 0, 1},
-//         {0, 0, 1, 1, 1},
-//         {0, 0, 0, 0, 1}};
-//     // printf("%s\n", isPartialOrdering(5, a) ? "True" : "False");
-//     int b[5][5] = {0};
-//     getHasseMatrix(5, a , b);
-//     int n = 5;
-//     for (int i = 0; i < n; i++)
-//     {
-//         for (int j = 0; j < n; j++)
-//         {
-//             printf("%d ",a[i][j] );
-//         }
-//         printf("\n");
-//     }
-//     printf("\n");
-//     for (int i = 0; i < n; i++)
-//     {
-//         for (int j = 0; j < n; j++)
-//         {
-//             printf("%d ",b[i][j] );
-//         }
-//         printf("\n");
-//     }
-
-// }

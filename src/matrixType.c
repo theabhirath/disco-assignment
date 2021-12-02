@@ -59,23 +59,6 @@ bool isAntiSymmetric(int n, int a[n][n]){
     return true;
 }
 
-bool isAntitransitive(int n, int a[n][n]){
-    for(int i = 0; i<n; i++){
-        for(int j = 0; j<n; j++){
-            if(a[i][j]){
-                for(int k = 0; k<n; k++){
-                    if(a[j][k]){
-                        if(a[i][k]){
-                            return false;
-                        }
-                    }
-                }
-            }
-        }
-    }
-    return true;
-}
-
 bool isEquivalence(int n, int a[n][n]){
     return isReflexive(n,a) && isSymmetric(n,a) && isTransitive(n,a);
 }

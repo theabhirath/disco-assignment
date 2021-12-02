@@ -6,6 +6,7 @@
 
 #include "../include/helper.h"
 
+/* it finds the partitions and prints them, and returns the number of partitions */
 int partition(int n, int a[n][n], char websites[MAXN][MAXCHAR]){
     int count = 0;
     int b[n][n];

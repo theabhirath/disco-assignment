@@ -12,11 +12,11 @@
 int posetMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *outputFile);
 int latticeMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *outputFile);
 
-//Program Expects a csv file name stored in the home directory of the project
-//If not given, SampleInput.csv is opened by default 
+/* Program Expects a csv file name stored in the home directory of the project
+If not given, SampleInput.csv is opened by default */
 int main(int argc, char *argv[])
 {
-    printf("Welcome to our DisCo project!\n\n");
+    printf("Welcome to our DiSCo project!\n\n");
     /* reading the input csv file */
     FILE *fp;
     char row[MAXCHAR];
@@ -122,6 +122,7 @@ int main(int argc, char *argv[])
         // exit case
         if (choice == 9)
         {
+            printf("Thank you for using our DiSCo project!\n");
             return 0;
         }
         bool result;
@@ -155,7 +156,7 @@ int main(int argc, char *argv[])
                         {
                             printf("%d", b[i][j]);
                         }
-                        printf("\n");
+                        printf("\n\n");
                     }
                     writeToCsv(n, websites, b, outputFile);
                     plot_digraph(outputFile);
@@ -190,7 +191,7 @@ int main(int argc, char *argv[])
                         {
                             printf("%d", b[i][j]);
                         }
-                        printf("\n");
+                        printf("\n\n");
                     }
                     writeToCsv(n, websites, b, outputFile);
                     plot_digraph(outputFile);
@@ -225,7 +226,7 @@ int main(int argc, char *argv[])
                         {
                             printf("%d", b[i][j]);
                         }
-                        printf("\n");
+                        printf("\n\n");
                     }
                     writeToCsv(n, websites, array, outputFile);
                     plot_digraph(outputFile);
@@ -486,6 +487,8 @@ int latticeMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *outp
         scanf("%d", &choice);
         getchar();
         switch (choice){
+            /* enter two websites and display the website which is reachable by both the websites and can
+            reach to all other websites the two input websites can reach */
             case 1:{
                 int a,b;
                 printf("Enter indices of two websites A and B:\n");
@@ -495,6 +498,8 @@ int latticeMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *outp
                 printf("%s\n", websites[m]);
                 break;
             }
+            /* enter two websites and display the website which can reach both the websites and is
+              reachable from all other websites which can reach the two input websites */
             case 2:{
                 int a,b;
                 printf("Enter indices of two websites A and B:\n");
@@ -504,6 +509,7 @@ int latticeMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *outp
                 printf("%s\n", websites[m]);
                 break;
             }
+            /* check if the lattice is distributive*/
             case 3:
                 if(isDistributive(n, array)){
                     printf("Yes\n");
@@ -512,6 +518,7 @@ int latticeMenu(int n, int array[n][n], char websites[MAXN][MAXCHAR], char *outp
                     printf("No\n");
                 }
                 break;
+            /* return to menu 4 */
             case 4:
                 return 0;
             default:

@@ -10,6 +10,7 @@ void reflexive_closure(int n, int a[n][n], int b[n][n]){
     }
 }
 
+/* calculates symmetric closure of a relation */
 void symmetric_closure(int n, int a[n][n], int b[n][n]){
     memcpy(b, a, sizeof(int) * n * n);
     for (int i = 0; i < n; i++){

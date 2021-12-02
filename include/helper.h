@@ -24,7 +24,6 @@ bool isSymmetric(int n, int a[n][n]);
 bool isTransitive(int n, int a[n][n]);
 bool isAntiReflexive(int n, int a[n][n]);
 bool isAntiSymmetric(int n, int a[n][n]);
-bool isAntiTransitive(int n, int a[n][n]);
 bool isEquivalence(int n, int a[n][n]);
 bool isPartialOrdering(int n, int a[n][n]);
 

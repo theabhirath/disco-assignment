@@ -3,6 +3,7 @@
 
 #include "../include/helper.h"
 
+/* returns join of two elements a and b wrt. lattice d */
 int join(int a, int b, int n, int d[n][n]){
 	int arr[n][n];
 	memcpy(arr, d, sizeof(int[n][n]));
@@ -26,8 +27,10 @@ int join(int a, int b, int n, int d[n][n]){
             }
         }
     }
+    return -1;
 }
 
+/* returns meet of two elements a and b wrt. lattice d */
 int meet(int a, int b, int n, int d[n][n]){
 	int arr[n][n];
 	memcpy(arr, d, sizeof(int[n][n]));
@@ -51,10 +54,11 @@ int meet(int a, int b, int n, int d[n][n]){
             }
         }
     }
+    return -1;
 }
 
+/* Returns the number of complements and the complements are stored in an array */
 int complement(int a, int n, int b[n][n], int comp[n]){
-    /* Returns the number of complements and the complements are stored in an array */
     int x=0;
     int c[n][n];
     memcpy(c, b, sizeof(int[n][n]));
@@ -73,9 +77,8 @@ int complement(int a, int n, int b[n][n], int comp[n]){
     return x;
 }
 
-
+/* Check if all elements have only one complement, if yes, distributive */
 int isDistributive(int n, int b[n][n]){
-    /* Check if all elements have only one complement, if yes, distributive */
     int noComp;
     int comps[n];
     for (int i=0; i<n; i++){
@@ -88,5 +91,4 @@ int isDistributive(int n, int b[n][n]){
         }
     }
     return 1;
-
 }
