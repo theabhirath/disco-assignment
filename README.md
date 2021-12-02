@@ -6,6 +6,4 @@ For compiling, the makefile can be run by simply typing `make` in the terminal o
 
 The program can also take any custom file as input - for this, when executing the `.exe`, just type the name of the file in as a command line argument. By default, the file is assumed to be in the root directory of the project. We have added two CSV files, "subsets.csv" and "divides.csv" for this purpose.
 
-Made by: Abhirath Anand
-        Rohan Srinivasan
-        Srijan Shashwat
+Made by: Abhirath Anand, Rohan Srinivasan and Srijan Shashwat
